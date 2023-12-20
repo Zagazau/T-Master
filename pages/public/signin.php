@@ -21,48 +21,61 @@ $title = ' - Sign In';
     }
     ?>
 
-    <section class="vh-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 text-black">
 
-            <div class="px-5 ms-xl-4">
-              <img class="header-logo" src="./assets/images/Logo1.png" alt="">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <link rel="stylesheet" href="../../assets/css/signin.css">
+    </head>
+
+    <section class=" vh-100 bg-custom">
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center mb-5">Login</h2>
+                  <form>
+
+                    <div class="form-outline mb-4">
+                      <input type="email" id="form3Example3cg" class="form-control form-control-lg"
+                        placeholder="Email" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="form3Example4cg" class="form-control form-control-lg"
+                        placeholder="Password" />
+                    </div>
+
+                    <div class="form-check d-flex justify-content-between mb-5">
+                      <div>
+                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                        <label class="form-check-label" for="form2Example3cg">
+                          Guardar dados
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                      <button type="button"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Login</button>
+                    </div>
+
+                    <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="../../pages/public/signin.php"
+                        class="fw-bold text-body"><u>Cria agora</u></a>
+                    </p>
+                    <br>
+                    <div class="d-flex justify-content-center mb-3">
+                      <a href="../../index.php" class="btn btn-secondary btn-sm">Voltar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-
-            <img class="header-logo" src="./assets/images/Logo1.png" alt="">
-
-            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
-              <form style="width: 23rem;">
-
-                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
-
-                <div class="form-outline mb-4">
-                  <input type="email" id="form2Example18" class="form-control form-control-lg" placeholder="Email" />
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form2Example28" class="form-control form-control-lg"
-                    placeholder="password" />
-                </div>
-
-                <div class="pt-1 mb-4">
-                  <button class="btn btn-info btn-lg btn-block" type="button">Login</button>
-                </div>
-
-                <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-                <p>Não tens conta? <a href="./pages/public/signup.php" class="link-info">Regista-te aqui</a></p>
-
-              </form>
-
-            </div>
-
-          </div>
-          <div class="col-sm-6 px-0 d-none d-sm-block">
-            <img
-              src="https://img.freepik.com/premium-photo/vertical-background-image-minimal-home-office-workplace-with-laptop-accessories-black-white-copy-space_236854-27485.jpg?w=360"
-              alt="Login image" class="w-100 vh-100" style="width: 200px; height: auto;">
           </div>
         </div>
       </div>
