@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
-include_once __DIR__ . '../../../templates/header.php';
+
 
 $title = ' - Sign In';
 
@@ -51,10 +51,10 @@ $title = ' - Sign In';
                         placeholder="Password" />
                     </div>
 
-                    <div class="form-check d-flex justify-content-between mb-5">
+                    <div class="form-check mb-5 text-center">
                       <div>
                         <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                        <label class="form-check-label" for="form2Example3cg">
+                        <label class="form-check-label text-center" for="form2Example3cg">
                           Guardar dados
                         </label>
                       </div>
@@ -65,7 +65,7 @@ $title = ' - Sign In';
                         class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Login</button>
                     </div>
 
-                    <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="../../pages/public/signin.php"
+                    <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="./sign.php"
                         class="fw-bold text-body"><u>Cria agora</u></a>
                     </p>
                     <br>
