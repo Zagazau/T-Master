@@ -3,6 +3,10 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
 include_once __DIR__ . '../../../templates/header.php';
 
 $title = ' - Sign In';
+
+
+
+
 ?>
 <main>
   <section>

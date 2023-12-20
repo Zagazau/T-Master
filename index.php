@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
-//require_once __DIR__ . './setupdatabase.php';
+require_once __DIR__ . '/setupdatabase.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,54 +16,50 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 </head>
 
-
-
-
 <body>
-
-
-<nav class="navbar navbar-expand-lg ">
+  <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid d-flex justify-content-between">
-        <div class=" w-100 d-flex justify-content-between align-items-center">
-            <a href="/" class="navbar-brand d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img class="header-logo" src="assets/images/Logo1.png" alt="">
+      <div class=" w-100 d-flex justify-content-between align-items-center">
+        <a href="/" class="navbar-brand d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <img class="header-logo" src="assets/images/Logo1.png" alt="">
+        </a>
+        <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#homepage" class="nav-link px-2 link-secondary" style="color: gray;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link px-2 link-dark" style="color: gray;">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#services" class="nav-link px-2 link-dark" style="color: gray;">Serviços</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link px-2 link-dark" style="color: gray;">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-secondary ml-2 py-1 w-25 mb-2" type="button" href="./pages/public/signin.php">
+              Login
             </a>
-            <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#homepage" class="nav-link px-2 link-secondary" style="color: gray;">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link px-2 link-dark" style="color: gray;">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#services" class="nav-link px-2 link-dark" style="color: gray;">Serviços</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link px-2 link-dark" style="color: gray;">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-secondary ml-2 py-1 w-25 mb-2" type="button">
-                        Login
-                    </button>
-                </li>
-            </ul>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
   <main>
     <div class="container">
       <section id="homepage">
@@ -80,7 +76,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
                   categorizar,
                   priorizar e partilhar as tuas tarefas. Define Estados, destaca as tuas tarefas favoritas e simplifica
                   a gestão do teu tempo.</p>
-                <a class="btn btn-primary btn-xl" href="#about">Clica Aqui</a>
+                <a class="btn btn-primary btn-xl" href="./pages/public/signup.php">Cria Conta</a>
               </div>
             </div>
           </div>
@@ -114,7 +110,6 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
           </div>
         </div>
       </section>
-
 
       <section id="services">
         <div class="container px-8 px-lg-5">
