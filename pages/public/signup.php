@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 $title = '- Sign Up';
-include_once __DIR__ . '../../../templates/header.php'; ?>
+?>
 
 <main>
   <section>
@@ -22,31 +22,79 @@ include_once __DIR__ . '../../../templates/header.php'; ?>
     }
     ?>
   </section>
-  <form action="/crud/controllers/auth/signup.php" method="post">
-    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
-    <div class="form-floating mb-2">
-      <input type="text" class="form-control" name="name" placeholder="name" maxlength="100" size="100"
-        value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : null ?>" required>
-      <label for="name">Name</label>
+  
+  <!DOCTYPE html PUBLIC>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/signup.css">
+    <script src="../../assets/js/func.js"></script>
+</head>
+
+
+<section class="vh-100 bg-image"
+style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <div class="d-flex align-items-center mb-4">
+                  <a href="#" class="text-body" onclick="voltarParaPaginaAnterior()">&#8592; Voltar</a>
+                  <h2 class="text-uppercase text-center mb-5 mx-auto">Criar Conta</h2>
+              </div>
+
+              <form>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nome" />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Email" />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repete a password" />
+                </div>
+
+                <div class="form-check text-center mb-5">
+                  <input class="form-check-input" type="checkbox" id="formCheck1">
+                  <label class="form-check-label" for="formCheck1">
+                    Concordo com os <a href="#!" class="text-body"><u>termos de serviço</u></a>
+                  </label>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registar</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Já tens conta? <a href="./signin.php"
+                    class="fw-bold text-body"><u>Entra aqui!</u></a>
+                </p>
+
+                <div class="d-flex justify-content-center mb-3">
+                      <a href="../../index.php" class="btn btn-secondary btn-sm">Voltar</a>
+                </div>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-floating mb-2">
-      <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com"
-        value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>">
-      <label for="floatingInput">Email</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-      <label for="password">Password</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="confirmar_palavra_passe" name="confirmar_palavra_passe"
-        placeholder="Confirm password">
-      <label for="confirmar_palavra_passe">Confirm Password</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="signUp">Sign Up</button>
-  </form>
-  <a href="/crud/"><button class="w-100 btn btn-lg btn-info">Back</button></a>
+  </div>
+</section>
+
 </main>
-<?php
-include_once __DIR__ . '../../../templates/footer.php'; ?>
-?>
+
