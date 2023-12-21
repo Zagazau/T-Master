@@ -1,12 +1,10 @@
 <?php
+//session_start();
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 
 
-$title = ' - Sign In';
 
-
-
-
+//$title = ' - Sign In';
 ?>
 <main>
   <section>
@@ -31,24 +29,26 @@ $title = ' - Sign In';
       <link rel="stylesheet" href="../../assets/css/signin.css">
     </head>
 
-    <section class=" vh-100 bg-custom">
+    <section class=" vh-100 bg-custom"
+      style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
       <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
+                  <a href="../../index.php" class="text-body">&#8592; Voltar</a>
                   <h2 class="text-uppercase text-center mb-5">Login</h2>
-                  <form>
+                  <form action="/StreamSync/src/controllers/auth/login.php" method="POST">
 
                     <div class="form-outline mb-4">
-                      <input type="email" id="form3Example3cg" class="form-control form-control-lg"
-                        placeholder="Email" />
+                      <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Email"
+                        name="email" />
                     </div>
 
                     <div class="form-outline mb-4">
                       <input type="password" id="form3Example4cg" class="form-control form-control-lg"
-                        placeholder="Password" />
+                        placeholder="Password" name="password" />
                     </div>
 
                     <div class="form-check mb-5 text-center">
@@ -61,18 +61,15 @@ $title = ' - Sign In';
                     </div>
 
                     <div class="d-flex justify-content-center">
-                      <button type="button"
-                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Login</button>
+                      <input type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-white"
+                        href="../../pages/public/main.php" value="Login">
                     </div>
 
-                    <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="./sign.php"
-                        class="fw-bold text-body"><u>Cria agora</u></a>
-                    </p>
-                    <br>
-                    <div class="d-flex justify-content-center mb-3">
-                      <a href="../../index.php" class="btn btn-secondary btn-sm">Voltar</a>
-                    </div>
                   </form>
+
+                  <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="./signup.php"
+                      class="fw-bold text-body"><u>Cria agora</u></a>
+                  </p>
                 </div>
               </div>
             </div>

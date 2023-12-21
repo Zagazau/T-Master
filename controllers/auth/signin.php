@@ -2,6 +2,23 @@
 session_start();
 require_once __DIR__ . '/../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../helpers/validations/app/validate-login-password.php';
+require __DIR__ . '/../../infra/db/connection.php';
+
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+$PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utlizadores WHERE email = ? LIMIT 1;');
+$PDOStatement->bindValue(1, $email);
+$PDOStatement->execute();
+$user = $PDOStatement->fetch();
+
+if ($user && password_verify($password, $user['password'])) {
+    $_SESSION['user'] = $user;
+} else {
+    echo ("error");
+}
+
+
 
 if (isset($_POST['user'])) {
     if ($_POST['user'] == 'login') {
