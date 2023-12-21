@@ -4,6 +4,8 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
 
 
 
+
+
 //$title = ' - Sign In';
 ?>
 <main>
@@ -29,8 +31,7 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
       <link rel="stylesheet" href="../../assets/css/signin.css">
     </head>
 
-    <section class=" vh-100 bg-custom"
-      style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <section class=" vh-100 bg-custom">
       <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
