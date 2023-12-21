@@ -5,34 +5,25 @@ function createUser($user)
 {
     $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
-    users (
-        name, 
-        lastname, 
-        phoneNumber, 
-        email, 
-        foto, 
-        administrator, 
-        password) 
+    utilizadores (
+        username, 
+        password, 
+        nome, 
+        email) 
     VALUES (
-        :name, 
-        :lastname, 
-        :phoneNumber, 
-        :email, 
-        :foto, 
-        :administrator, 
-        :password
+        :username, 
+        :password, 
+        :nome, 
+        :email
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
     $success = $PDOStatement->execute([
-        ':name' => $user['name'],
-        ':lastname' => $user['lastname'],
-        ':phoneNumber' => $user['phoneNumber'],
+        ':username' => $user['username'],
+        ':password' => $user['password'],
+        ':nome' => $user['nome'],
         ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':administrator' => $user['administrator'],
-        ':password' => $user['password']
     ]);
 
     if ($success) {
@@ -43,7 +34,7 @@ function createUser($user)
 
 function getById($id)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM users WHERE id = ?;');
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE id = ?;');
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     $PDOStatement->execute();
     return $PDOStatement->fetch();
@@ -51,7 +42,7 @@ function getById($id)
 
 function getByEmail($email)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM users WHERE email = ? LIMIT 1;');
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE email = ? LIMIT 1;');
     $PDOStatement->bindValue(1, $email);
     $PDOStatement->execute();
     return $PDOStatement->fetch();
@@ -59,7 +50,7 @@ function getByEmail($email)
 
 function getAll()
 {
-    $PDOStatement = $GLOBALS['pdo']->query('SELECT * FROM users;');
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT * FROM utilizadores;');
     $users = [];
     while ($listaDeusers = $PDOStatement->fetch()) {
         $users[] = $listaDeusers;
@@ -73,50 +64,38 @@ function updateUser($user)
         $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
 
         $sqlUpdate = "UPDATE  
-        users SET
-            name = :name, 
-            lastname = :lastname, 
-            phoneNumber = :phoneNumber, 
-            email = :email, 
-            foto = :foto, 
-            administrator = :administrator, 
-            password = :password
+        utilizadores SET
+            username = :username, 
+            password = :password, 
+            nome = :nome, 
+            email = :email
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
         return $PDOStatement->execute([
             ':id' => $user['id'],
-            ':name' => $user['name'],
-            ':lastname' => $user['lastname'],
-            ':phoneNumber' => $user['phoneNumber'],
+            ':username' => $user['username'],
+            ':password' => $user['password'],
+            ':nome' => $user['nome'],
             ':email' => $user['email'],
-            ':foto' => $user['foto'],
-            ':administrator' => $user['administrator'],
-            ':password' => $user['password']
         ]);
     }
 
     $sqlUpdate = "UPDATE  
-    users SET
-        name = :name, 
-        lastname = :lastname, 
-        phoneNumber = :phoneNumber, 
-        email = :email, 
-        foto = :foto, 
-        administrator = :administrator
+    utilizadores SET
+        username = :username, 
+        nome = :nome, 
+        email = :email
     WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
     return $PDOStatement->execute([
         ':id' => $user['id'],
-        ':name' => $user['name'],
-        ':lastname' => $user['lastname'],
-        ':phoneNumber' => $user['phoneNumber'],
+        ':username' => $user['username'],
+        ':nome' => $user['nome'],
         ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':administrator' => $user['administrator']
     ]);
 }
 
@@ -126,8 +105,8 @@ function updatePassword($user)
         $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
 
         $sqlUpdate = "UPDATE  
-        users SET
-            name = :name, 
+        utilizadores SET
+            username = :username, 
             password = :password
         WHERE id = :id;";
 
@@ -135,15 +114,15 @@ function updatePassword($user)
 
         return $PDOStatement->execute([
             ':id' => $user['id'],
-            ':name' => $user['name'],
-            ':password' => $user['password']
+            ':username' => $user['username'],
+            ':password' => $user['password'],
         ]);
     }
 }
 
 function deleteUser($id)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM users WHERE id = ?;');
+    $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM utilizadores WHERE id = ?;');
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     return $PDOStatement->execute();
 }
@@ -152,21 +131,21 @@ function createNewUser($user)
 {
     $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
-    users (
-        name, 
+    utilizadores (
+        username, 
         email, 
         password) 
     VALUES (
-        :name, 
+        :username, 
         :email, 
         :password
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
     $success = $PDOStatement->execute([
-        ':name' => $user['name'],
+        ':username' => $user['username'],
         ':email' => $user['email'],
-        ':password' => $user['password']
+        ':password' => $user['password'],
     ]);
 
     if ($success) {
@@ -176,3 +155,4 @@ function createNewUser($user)
 
     return false;
 }
+

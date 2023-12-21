@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 
 
     <head>
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row flex-nowrap">
 
-                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
                     <div
                         class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                         <a href="/"
@@ -60,11 +60,60 @@
 
                 <div class="col-md-9 col-xl-10">
                     <h1 class="mt-3">Bem-vindo, </h1>
+
+                    <div class="container">
+        <!-- Conteúdo da página principal -->
+        <h1>Tabela Principal</h1>
+
+        <table class="table" id="tabelaTarefas">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas da tabela serão adicionadas aqui dinamicamente -->
+            </tbody>
+        </table>
+
+        <script>
+            // Função para adicionar uma nova tarefa à tabela
+            function adicionarTarefa(foto, titulo, data, prioridade, estado) {
+                var tabela = document.getElementById("tabelaTarefas");
+                var novaLinha = tabela.insertRow(tabela.rows.length);
+                
+                // Preencher as células da nova linha
+                var celulaNumero = novaLinha.insertCell(0);
+                celulaNumero.innerHTML = tabela.rows.length - 1;
+
+                var celulaFoto = novaLinha.insertCell(1);
+                celulaFoto.innerHTML = foto;
+
+                var celulaTitulo = novaLinha.insertCell(2);
+                celulaTitulo.innerHTML = titulo;
+
+                var celulaData = novaLinha.insertCell(3);
+                celulaData.innerHTML = data;
+
+                var celulaPrioridade = novaLinha.insertCell(4);
+                celulaPrioridade.innerHTML = prioridade;
+
+                var celulaEstado = novaLinha.insertCell(5);
+                celulaEstado.innerHTML = estado;
+            }
+
+            // Exemplo de como chamar a função para adicionar uma tarefa
+            adicionarTarefa('caminho/para/foto.jpg', 'Tarefas Escola', '24/12/2023', 3, 'Por fazer');
+        </script>
+
+    </div>
+
                 </div>
             </div>
         </div>
     </body>
-
-
-
-    </html>

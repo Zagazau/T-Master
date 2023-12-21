@@ -6,16 +6,12 @@ function validatedUser($req)
         $req[$key] =  trim($req[$key]);
     }
 
-    if (empty($req['name']) || strlen($req['name']) < 3 || strlen($req['name']) > 255) {
-        $errors['name'] = 'The Name field cannot be empty and must be between 3 and 255 characters';
+    if (empty($req['nome']) || strlen($req['nome']) < 3 || strlen($req['nome']) > 255) {
+        $errors['nome'] = 'The Name field cannot be empty and must be between 3 and 255 characters';
     }
 
-    if (empty($req['lastname']) || strlen($req['lastname']) < 3 || strlen($req['lastname']) > 255) {
-        $errors['lastname'] = 'The Last Name field cannot be empty and must be between 3 and 255 characters';
-    }
-
-    if (!filter_var($req['phoneNumber'], FILTER_VALIDATE_INT) || strlen($req['phoneNumber']) != 9) {
-        $errors['phoneNumber'] = 'The Mobile phone field cannot be empty and must have 9 numbers.';
+    if (empty($req['username']) || strlen($req['username']) < 3 || strlen($req['username']) > 255) {
+        $errors['username'] = 'The Username field cannot be empty and must be between 3 and 255 characters';
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
@@ -35,11 +31,12 @@ function validatedUser($req)
         $errors['confirm_password'] = 'The Confirm Password field must not be empty and must be the same as the Password field.';
     }
 
-    $req['administrator'] = !empty($req['administrator']) == 'on' ? true : false;
-
     if (isset($errors)) {
         return ['invalid' => $errors];
     }
+
+    $req['password'] = password_hash($req['password'], PASSWORD_DEFAULT);
+
     return $req;
 }
 ?>
