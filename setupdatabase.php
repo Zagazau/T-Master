@@ -1,6 +1,10 @@
 <?php
 #EASY DATABASE SETUP
-require __DIR__ . '/infra/db/connection.php'; /*
+require __DIR__ . '/infra/db/connection.php'; 
+
+
+
+/*
 
 #DROP TABLE
 $pdo->exec('DROP TABLE IF EXISTS users;');

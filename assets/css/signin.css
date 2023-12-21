@@ -4,3 +4,9 @@
     background: -webkit-linear-gradient(to right, rgba(233, 239, 236, 0.5), rgba(78, 78, 79, 0.5));
     background: linear-gradient(to right, rgba(233, 239, 236, 0.5), rgba(78, 78, 79, 0.5))
 }
+
+.gradient-custom-4 {
+    background: #717e76;
+    background: -webkit-linear-gradient(to right, rgba(233, 239, 236, 0.5), rgba(78, 78, 79, 0.5));
+    background: linear-gradient(to right, rgba(233, 239, 236, 0.5), rgba(78, 78, 79, 0.5))
+}
