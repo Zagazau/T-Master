@@ -38,7 +38,56 @@ class TarefaRepository
         ]);
     }
 
-    // Adicione aqui outros métodos necessários para manipulação de tarefas
-    // Exemplo: métodos para obter tarefas, atualizar tarefas, excluir tarefas, etc.
+    public function getTarefaById($id)
+    {
+        $sql = "SELECT * FROM tarefas WHERE id = :id";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllTarefas()
+    {
+        $sql = "SELECT * FROM tarefas";
+        $statement = $GLOBALS['pdo']->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateTarefa($id, $titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita)
+    {
+        $sqlUpdate = "UPDATE tarefas SET 
+            titulo = :titulo,
+            descricao = :descricao,
+            data_inicio = :data_inicio,
+            data_fim = :data_fim,
+            prioridade = :prioridade,
+            estado = :estado,
+            favorita = :favorita
+            WHERE id = :id";
+
+        $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
+
+        return $PDOStatement->execute([
+            ':titulo' => $titulo,
+            ':descricao' => $descricao,
+            ':data_inicio' => $data_inicio,
+            ':data_fim' => $data_fim,
+            ':prioridade' => $prioridade,
+            ':estado' => $estado,
+            ':favorita' => $favorita,
+            ':id' => $id,
+        ]);
+    }
+
+    public function deleteTarefa($id)
+    {
+        $sqlDelete = "DELETE FROM tarefas WHERE id = :id";
+        $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
+
+        return $PDOStatement->execute([
+            ':id' => $id,
+        ]);
+    }
 }
 ?>
