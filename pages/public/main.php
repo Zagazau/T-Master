@@ -62,56 +62,40 @@
                     <h1 class="mt-3">Bem-vindo, </h1>
 
                     <div class="container">
-        <!-- Conteúdo da página principal -->
-        <h1>Tabela Principal</h1>
 
-        <table class="table" id="tabelaTarefas">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Prioridade</th>
-                    <th scope="col">Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Linhas da tabela serão adicionadas aqui dinamicamente -->
-            </tbody>
-        </table>
 
-        <script>
-            // Função para adicionar uma nova tarefa à tabela
-            function adicionarTarefa(foto, titulo, data, prioridade, estado) {
-                var tabela = document.getElementById("tabelaTarefas");
-                var novaLinha = tabela.insertRow(tabela.rows.length);
-                
-                // Preencher as células da nova linha
-                var celulaNumero = novaLinha.insertCell(0);
-                celulaNumero.innerHTML = tabela.rows.length - 1;
+                    <form action="./processar_tarefa.php" method="post">
+                        <label for="titulo">Título:</label>
+                        <input type="text" name="titulo" required>
 
-                var celulaFoto = novaLinha.insertCell(1);
-                celulaFoto.innerHTML = foto;
+                        <label for="descricao">Descrição:</label>
+                        <textarea name="descricao"></textarea>
 
-                var celulaTitulo = novaLinha.insertCell(2);
-                celulaTitulo.innerHTML = titulo;
+                        <label for="data_inicio">Data de Início:</label>
+                        <input type="date" name="data_inicio" required>
 
-                var celulaData = novaLinha.insertCell(3);
-                celulaData.innerHTML = data;
+                        <label for="data_fim">Data de Fim:</label>
+                        <input type="date" name="data_fim">
 
-                var celulaPrioridade = novaLinha.insertCell(4);
-                celulaPrioridade.innerHTML = prioridade;
+                        <label for="prioridade">Prioridade:</label>
+                        <select name="prioridade">
+                            <option value="1">Baixa</option>
+                            <option value="2">Média</option>
+                            <option value="3">Alta</option>
+                        </select>
 
-                var celulaEstado = novaLinha.insertCell(5);
-                celulaEstado.innerHTML = estado;
-            }
+                        <label for="estado">Estado:</label>
+                        <select name="estado">
+                            <option value="Por fazer">Por fazer</option>
+                            <option value="A ser feita">A ser feita</option>
+                            <option value="Terminada">Terminada</option>
+                        </select>
 
-            // Exemplo de como chamar a função para adicionar uma tarefa
-            adicionarTarefa('caminho/para/foto.jpg', 'Tarefas Escola', '24/12/2023', 3, 'Por fazer');
-        </script>
+                        <label for="favorita">Favorita:</label>
+                        <input type="checkbox" name="favorita">
 
-    </div>
+                        <button type="submit" name="user" value="addTask">Adicionar Tarefa</button>
+                    </form>
 
                 </div>
             </div>

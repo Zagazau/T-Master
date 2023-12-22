@@ -71,22 +71,22 @@ $title = '- Sign Up';
 
                                     <form method="POST" action="/tmaster/controllers/auth/signup.php">
                                         <div class="form-outline mb-4">
-                                            <input type="text" name="nome" id="form3Example1cg"
+                                            <input type="text" name="nome" id="name"
                                                 class="form-control form-control-lg" placeholder="Nome" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" name="email" id="form3Example3cg"
+                                            <input type="email" name="email" id="email"
                                                 class="form-control form-control-lg" placeholder="Email" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" name="username" id="form3Example1cg"
+                                            <input type="text" name="username" id="username"
                                                 class="form-control form-control-lg" placeholder="Username" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="password" id="form3Example4cg"
+                                            <input type="password" name="password" id="password"
                                                 class="form-control form-control-lg" placeholder="Password" />
                                         </div>
 
