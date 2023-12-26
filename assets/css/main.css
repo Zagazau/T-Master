@@ -1,8 +1,9 @@
-.nav-link:hover {
-
-    color: white !important;
-
+/* Adicione este código ao seu arquivo CSS externo ou dentro de uma tag <style> no head do HTML */
+.nav-pills .nav-link {
+    color: black;
 }
-.back{
-    color: #8f8f8f;
+
+/* Adicione esta regra para alterar a cor do texto quando o mouse passa por cima */
+.nav-pills .nav-link:hover {
+    color: white;
 }
