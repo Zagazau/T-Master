@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tarefaRepository->createTarefa($titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita);
 
     // Redirecione para a página principal após a inserção
-    header('Location: /tmaster/pages/public/main.php');
+    header('Location: /tmaster/pages/secure/main.php');
     exit();
 } else {
     // Se o formulário não foi enviado, redirecione para a página principal
-    header('Location: /tmaster/pages/public/main.php');
+    header('Location: /tmaster/pages/secure/main.php');
     exit();
 }
 ?>

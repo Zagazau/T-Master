@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tarefa_existente['favorita']
     );
 
-    header('Location: /tmaster/pages/public/main.php');
+    header("Location: /tmaster/pages/secure/main.php");
     exit();
 } else {
-    header('Location: /tmaster/pages/public/main.php');
+    header('Location: /tmaster/pages/secure/main.php');
     exit();
 }
 ?>
