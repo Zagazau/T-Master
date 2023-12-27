@@ -37,31 +37,30 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
                 <div class="card-body p-5">
                   <a href="#" class="text-body" onclick="voltarParaPaginaAnterior()">&#8592; Voltar</a>
                   <h2 class="text-uppercase text-center mb-5">Login</h2>
-                  <form action="/StreamSync/src/controllers/auth/login.php" method="POST">
 
-                    <div class="form-outline mb-4">
-                      <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Email"
-                        name="email" />
-                    </div>
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Email"
+                      name="email" />
+                  </div>
 
-                    <div class="form-outline mb-4">
-                      <input type="password" id="form3Example4cg" class="form-control form-control-lg"
-                        placeholder="Password" name="password" />
-                    </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form3Example4cg" class="form-control form-control-lg"
+                      placeholder="Password" name="password" />
+                  </div>
 
-                    <div class="form-check mb-5 text-center">
-                      <div>
-                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                        <label class="form-check-label text-center" for="form2Example3cg">
-                          Guardar dados
-                        </label>
-                      </div>
+                  <div class="form-check mb-5 text-center">
+                    <div>
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                      <label class="form-check-label text-center" for="form2Example3cg">
+                        Guardar dados
+                      </label>
                     </div>
+                  </div>
 
-                    <div class="d-flex justify-content-center">
-                      <input type="submit" class="btn btn-success btn-block btn-lg text-white"
-                        href="../../pages/public/main.php" class="gradient-custom-4" value="Login">
-                    </div>
+                  <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-success btn-block btn-lg text-white"
+                      href="../../pages/public/main.php" class="gradient-custom-4" value="Login">
+                  </div>
 
                   </form>
 
