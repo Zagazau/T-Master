@@ -157,7 +157,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
 
                     <form action="/tmaster/pages/public/processar_tarefa.php"
                         action="/tmaster/pages/public/processar_edicao.php"
-                        action="/tmaster/pages/public/processar_exclusao.php" method="post" class="my-4">
+                        action="/tmaster/pages/public/excluir_tarefa.php" method="post" class="my-4">
                         <h4 class="mb-4">Adicionar uma Tarefa</h4>
                         <div class="row mb-3">
                             <div class="col-md-6">

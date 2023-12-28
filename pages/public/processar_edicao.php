@@ -6,6 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tarefa_id = $_POST['tarefa_id'];
     $novo_titulo = $_POST['novo_titulo'];
     $nova_descricao = $_POST['nova_descricao'];
+    $nova_data_inicio = $_POST['nova_data_inicio'];
+    $nova_data_fim = $_POST['nova_data_fim'];
+    $nova_prioridade = $_POST['nova_prioridade'];
+    $novo_estado = $_POST['novo_estado'];
+    $nova_favorita = isset($_POST['nova_favorita']) ? 1 : 0;
 
     $tarefaRepository = new TarefaRepository();
     
@@ -21,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tarefa_id,
         $titulo,
         $descricao,
-        $tarefa_existente['data_inicio'],
-        $tarefa_existente['data_fim'],
-        $tarefa_existente['prioridade'],
-        $tarefa_existente['estado'],
-        $tarefa_existente['favorita']
+        $nova_data_inicio,
+        $nova_data_fim,
+        $nova_prioridade,
+        $novo_estado,
+        $nova_favorita
     );
 
     header("Location: /tmaster/pages/secure/main.php");
