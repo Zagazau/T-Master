@@ -62,7 +62,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li class="nav-item">
-                            <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
+                            <a href="/tmaster/pages/public/minhas_tarefas.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-person"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
                             </a>
@@ -88,7 +88,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Joao</span>
+                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
                 </div>
