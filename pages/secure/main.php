@@ -62,7 +62,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li class="nav-item">
-                            <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
+                            <a href="/tmaster/pages/public/minhas_tarefas.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-person"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
                             </a>
@@ -88,7 +88,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Joao</span>
+                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
                 </div>
@@ -144,8 +144,11 @@ $tarefas = $tarefaRepository->getAllTarefas();
                                 <td>
                                     <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
                                         class="btn btn-primary">Editar</a>
-                                    <a href="/tmaster/pages/secure/excluir_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
-                                        class="btn btn-danger">Excluir</a>
+                                    <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
+                                        onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                                        <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -211,68 +214,6 @@ $tarefas = $tarefaRepository->getAllTarefas();
                             Tarefa</button>
                     </form>
                     </table>
-
-                    <?php foreach ($tarefas as $tarefa): ?>
-                    <!-- Modal de edição -->
-                    <div class="modal fade" id="editarModal<?= $tarefa['id'] ?>" tabindex="-1" role="dialog"
-                        aria-labelledby="editarModalLabel" aria-hidden="true">
-                        <!-- Conteúdo do modal de edição -->
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editarModalLabel">Editar Tarefa</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Formulário de edição -->
-                                    <form action="/tmaster/pages/public/processar_edicao.php" method="post">
-                                        <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-
-                                        <!-- Campos de edição -->
-                                        <label for="titulo">Novo Título:</label>
-                                        <input type="text" name="novo_titulo" value="<?= $tarefa['titulo'] ?>" required>
-
-                                        <label for="descricao">Nova Descrição:</label>
-                                        <textarea name="nova_descricao"><?= $tarefa['descricao'] ?></textarea>
-
-                                        <!-- Adicione outros campos conforme necessário -->
-                                        <!-- Botão de submit -->
-                                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal de exclusão -->
-                    <div class="modal fade" id="excluirModal<?= $tarefa['id'] ?>" tabindex="-1" role="dialog"
-                        aria-labelledby="excluirModalLabel" aria-hidden="true">
-                        <!-- Conteúdo do modal de exclusão -->
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="excluirModalLabel">Confirmar Exclusão</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Você tem certeza que deseja excluir esta tarefa?</p>
-                                    <!-- Formulário de exclusão -->
-                                    <form action="/tmaster/pages/public/processar_exclusao.php" method="post">
-                                        <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-                                        <!-- Botão de submit -->
-                                        <button type="submit" class="btn btn-danger">Sim, Excluir</button>
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancelar</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

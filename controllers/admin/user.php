@@ -55,7 +55,7 @@ function create($req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /crud/pages/secure/admin/user.php' . $params);
+        header('location: /tmaster/pages/public/signup.php' . $params);
         return false;
     }
 
@@ -63,7 +63,7 @@ function create($req)
 
     if ($success) {
         $_SESSION['success'] = 'User created successfully!';
-        header('location: /crud/pages/secure/admin/');
+        header('location: /tmaster/pages/secure/admin/');
     }
 }
 

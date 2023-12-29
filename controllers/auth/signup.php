@@ -15,23 +15,21 @@ function signUp($req)
     $data = isSignUpValid($req);
 
     if (isset($data['invalid'])) {
-
         $_SESSION['errors'] = $data['invalid'];
-
         $params = '?' . http_build_query($req);
-
-        header('location: /crud/pages/public/signup.php' . $params);
+        header('location: /tmaster/pages/public/signup.php' . $params);
     } else {
-
         $user = createNewUser($data);
 
         if ($user) {
             $_SESSION['id'] = $user['id'];
-            $_SESSION['name'] = $user['name'];
+            $_SESSION['nome'] = $user['nome'];
 
             setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
-            setcookie("name", $data['name'], time() + (60 * 60 * 24 * 30), "/");
-            header('location: /crud/');
+            setcookie("nome", $data['nome'], time() + (60 * 60 * 24 * 30), "/");
+            header('location: /tmaster/');
         }
     }
 }
+?>
+
