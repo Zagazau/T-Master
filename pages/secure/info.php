@@ -64,48 +64,45 @@
                 </div>
             </div>
 
-            <div class="container rounded bg-white my-5 mt-3">
-                <div class="row justify-content-center align-items-start">
-                    <div class="col-md-12 text-center">
-                        <h1 class="mt-4">Perfil</h1>
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
-                                <label for="perfilImageInput">
-                                    <img id="perfilImage" class="rounded-circle" width="120px"
-                                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                    <button type="button" class="btn btn-link btn-edit-profile">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
-                                </label>
-                                <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
-                                    style="display: none;" onchange="displayImage(this)">
-                                <span class="font-weight-bold mt-1">Aparecer username</span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 py-5">
-                            <div class="row mt-2">
-                                <div class="col-md-12">
-                                    <label class="labels">Nome </label>
-                                    <input type="text" class="form-control" placeholder="Aparecer nome completo"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-12">
-                                    <label class="labels">Email </label>
-                                    <input type="text" class="form-control" placeholder="Aparecer email" value="">
-                                </div>
-                            </div>
-                            <div class="mt-3 text-center">
-                                <button class="btn btn-primary profile-button" type="button">Editar perfil</button>
-                            </div>
+            <div class="col-lg-9 d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="text-center mt-4">
+                        <h1>Informação</h1>
+                        <p>Algumas perguntas frequentes que te ajudam a conhecer-nos melhor
+                        <p>
+                        <div>
+                            <button type="button" class="btn btn-primary">Contacta-nos</button>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5>O que é o T-Master?</h5>
+                            <p class="text-muted">O T-Master é uma aplicação que te permite seres mais organizado no teu
+                                dia-a-dia com as tuas tarefas, em que poderás, priorizar, calendarizar, favoritar etc.
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <h5>O que fazer no T-Master?</h5>
+                            <p class="text-muted">Para utilizar o T-Master, você pode...</p>
+                        </li>
+                        <hr>
+                        <li>
+                            <h5>Como surgiu?</h5>
+                            <p class="text-muted">O T-Master é um projeto universitário etc</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
         </div>
+
+    </div>
+    </div>
+
 </body>
 
 </html>

@@ -37,7 +37,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
+                            <a href="perfil.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-person"></i>
                                 <span class="ms-1 d-none d-sm-inline">Perfil</span>
                             </a>
@@ -51,9 +51,9 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li>
-                            <a href="#" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
+                            <a href="info.php" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
                                 <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d- e d-sm-inline">Ajuda</span>
+                                <span class="ms-1 d- e d-sm-inline">Informação</span>
                             </a>
                         </li>
                         <hr>
