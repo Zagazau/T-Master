@@ -24,6 +24,14 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
+
+                        <li class="nav-item">
+                            <a href="main.php" class="nav-link align-middle px-0">
+                                <i class="bi bi-house-door"></i>
+                                <span class="ms-1 d-none d-sm-inline">Home</span>
+                            </a>
+                        </li>
+                        <hr>
                         <li class="nav-item">
                             <a href="perfil.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-person"></i>
@@ -33,7 +41,7 @@
                         <hr>
                         <li class="nav-item">
                             <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
-                                <i class="bi bi-person"></i>
+                                <i class="bi bi-list-task"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
                             </a>
                         </li>
@@ -41,7 +49,7 @@
                         <li>
                             <a href="info.php" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
                                 <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d- e d-sm-inline">Informação</span>
+                                <span class="ms-1 d-  e d-sm-inline">Informação</span>
                             </a>
                         </li>
                         <hr>
@@ -51,14 +59,15 @@
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
                         </li>
+
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-                                alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Aparecer nome</span>
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
+                                class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
                 </div>

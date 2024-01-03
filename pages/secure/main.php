@@ -54,6 +54,14 @@ $tarefas = $tarefaRepository->getAllTarefas();
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
+
+                        <li class="nav-item">
+                            <a href="main.php" class="nav-link align-middle px-0">
+                                <i class="bi bi-house-door"></i>
+                                <span class="ms-1 d-none d-sm-inline">Home</span>
+                            </a>
+                        </li>
+                        <hr>
                         <li class="nav-item">
                             <a href="perfil.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-person"></i>
@@ -63,7 +71,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         <hr>
                         <li class="nav-item">
                             <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
-                                <i class="bi bi-person"></i>
+                                <i class="bi bi-list-task"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
                             </a>
                         </li>
@@ -81,6 +89,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
                         </li>
+
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
