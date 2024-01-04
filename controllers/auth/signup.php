@@ -17,7 +17,7 @@ function signUp($req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /tmaster/pages/public/signup.php' . $params);
+        header('location: /tmaster/pages/public/signin.php' . $params);
     } else {
         $user = createNewUser($data);
 

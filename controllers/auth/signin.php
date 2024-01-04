@@ -67,7 +67,7 @@ function doLogin($data)
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
     setcookie("name", $data['name'], time() + (60 * 60 * 24 * 30), "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud/pages/secure';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/tmaster/pages/secure/main.php';
     header('Location: ' . $home_url);
 }
 
