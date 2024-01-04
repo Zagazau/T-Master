@@ -63,13 +63,6 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li class="nav-item">
-                            <a href="perfil.php" class="nav-link align-middle px-0">
-                                <i class="bi bi-person"></i>
-                                <span class="ms-1 d-none d-sm-inline">Perfil</span>
-                            </a>
-                        </li>
-                        <hr>
-                        <li class="nav-item">
                             <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-list-task"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
@@ -93,7 +86,8 @@ $tarefas = $tarefaRepository->getAllTarefas();
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        <a href="perfil.php"
+                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">
@@ -124,38 +118,38 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </thead>
                         <tbody>
                             <?php foreach ($tarefas as $tarefa): ?>
-                            <tr>
-                                <td>
-                                    <?= $tarefa['titulo'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['descricao'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['data_inicio'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['data_fim'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['prioridade'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['estado'] ?>
-                                </td>
-                                <td>
-                                    <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
-                                </td>
-                                <td>
-                                    <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
-                                        class="btn btn-primary">Editar</a>
-                                    <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
-                                        onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
-                                        <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-                                        <button type="submit" class="btn btn-danger">Excluir</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <?= $tarefa['titulo'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['descricao'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['data_inicio'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['data_fim'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['prioridade'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['estado'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
+                                    </td>
+                                    <td>
+                                        <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
+                                            class="btn btn-primary">Editar</a>
+                                        <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
+                                            onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                                            <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

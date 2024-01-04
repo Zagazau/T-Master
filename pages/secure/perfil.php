@@ -33,13 +33,6 @@
                         </li>
                         <hr>
                         <li class="nav-item">
-                            <a href="perfil.php" class="nav-link align-middle px-0">
-                                <i class="bi bi-person"></i>
-                                <span class="ms-1 d-none d-sm-inline">Perfil</span>
-                            </a>
-                        </li>
-                        <hr>
-                        <li class="nav-item">
                             <a href="minhas_tarefas.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-list-task"></i>
                                 <span class="ms-1 d-none d-sm-inline">As minhas tarefas</span>
@@ -63,7 +56,8 @@
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        <a href="perfil.php"
+                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">
@@ -82,9 +76,6 @@
                                 <label for="perfilImageInput">
                                     <img id="perfilImage" class="rounded-circle" width="120px"
                                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                    <button type="button" class="btn btn-link btn-edit-profile">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
                                 </label>
                                 <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
                                     style="display: none;" onchange="displayImage(this)">
