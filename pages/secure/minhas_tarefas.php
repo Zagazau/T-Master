@@ -82,6 +82,8 @@ $tarefas = $tarefaRepository->getAllTarefas();
 
             <div class="col-md-9 col-xl-10">
                 <h1 class="mt-3">As Minhas Tarefas</h1>
+                <br>
+
 
                 <div class="container">
                     <!-- Botoes -->

@@ -101,8 +101,11 @@ $tarefas = $tarefaRepository->getAllTarefas();
                 <h1 class="mt-3">Bem-vindo,
                     <?= $user['nome'] ?? null ?>!
                 </h1>
+                <hr>
+                <br>
 
                 <div class="container">
+                    <h4>As tuas tarefas</h4>
                     <table class="table table-striped table-bordered mt-4">
                         <thead class="thead-dark">
                             <tr>
