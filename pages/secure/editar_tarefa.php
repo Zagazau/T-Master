@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 // Inclua o arquivo que contém a classe TarefaRepository
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
 

@@ -133,11 +133,13 @@ function createNewUser($user)
     $sqlCreate = "INSERT INTO 
     utilizadores (
         username, 
-        email, 
+        email,
+        nome, 
         password) 
     VALUES (
         :username, 
         :email, 
+        :nome, 
         :password
     )";
 
@@ -145,6 +147,7 @@ function createNewUser($user)
     $success = $PDOStatement->execute([
         ':username' => $user['username'],
         ':email' => $user['email'],
+        ':nome' => $user['nome'],
         ':password' => $user['password'],
     ]);
 

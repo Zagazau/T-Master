@@ -51,7 +51,7 @@ function checkErrors($data, $req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /crud/pages/public/signin.php' . $params);
+        header('location: /tmaster/pages/public/signin.php' . $params);
         return false;
     }
 
@@ -86,6 +86,6 @@ function logout()
     setcookie('id', '', time() - 3600, "/");
     setcookie('name', '', time() - 3600, "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/tmaster';
     header('Location: ' . $home_url);
 }
