@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
+require_once __DIR__ . '/../../controllers/auth/signin.php';
 
 // Instancia o t
 $tarefaRepository = new tarefaRepository();
@@ -16,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["user"]) && $_POST["us
     $prioridade = $_POST["prioridade"];
     $estado = $_POST["estado"];
     $favorita = isset($_POST["favorita"]) ? 1 : 0;
+
+    logout();
 
     // Adiciona a tarefa
     $tarefaRepository->createTarefa($titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita);
@@ -77,7 +80,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a href="/tmaster/controllers/auth/signin.php" class="nav-link px-0 align-middle">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
