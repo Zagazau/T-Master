@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row flex-nowrap">
 
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f; min-width: 200px;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/"
                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -40,9 +40,9 @@
                         </li>
                         <hr>
                         <li>
-                            <a href="info.php" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
+                            <a href="info.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d-  e d-sm-inline">Informação</span>
+                                <span class="ms-1 d-none d-sm-inline">Informação</span>
                             </a>
                         </li>
                         <hr>
@@ -56,11 +56,9 @@
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="perfil.php"
-                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
+                        <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none "
+                            id="utilizador">
+                            <img src="https://github.com/mdo.png" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
@@ -74,7 +72,7 @@
                         <form action="/upload" method="post" enctype="multipart/form-data">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
                                 <label for="perfilImageInput">
-                                    <img id="perfilImage" class="rounded-circle" width="120px"
+                                    <img id="perfilImage" class="rounded-circle img-fluid" width="120px"
                                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                                 </label>
                                 <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
@@ -83,22 +81,22 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3 mt-md-0">
                         <div class="p-3 py-5">
                             <div class="row mt-2">
                                 <div class="col-md-12">
-                                    <label class="labels">Nome </label>
+                                    <label class="labels mt-2">Nome Completo</label>
                                     <input type="text" class="form-control" placeholder="Aparecer nome completo"
                                         value="">
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-12">
-                                    <label class="labels">Email </label>
+                                    <label class="labels mt-2">Email</label>
                                     <input type="text" class="form-control" placeholder="Aparecer email" value="">
                                 </div>
                             </div>
-                            <div class="mt-3 text-center">
+                            <div class="mt-2 text-center">
                                 <button class="btn btn-primary profile-button" type="button">Editar perfil</button>
                             </div>
                         </div>
@@ -106,6 +104,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
 </body>
 
 </html>

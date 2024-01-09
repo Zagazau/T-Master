@@ -56,8 +56,7 @@
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="perfil.php"
-                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">

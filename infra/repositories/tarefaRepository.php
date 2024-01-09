@@ -82,31 +82,63 @@ class TarefaRepository
 
     public function deleteTarefa($id)
     {
-    try {
-        $sqlDelete = "DELETE FROM tarefas WHERE id = :id";
-        $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
+        try {
+            $sqlDelete = "DELETE FROM tarefas WHERE id = :id";
+            $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
 
-        if ($PDOStatement === false) {
-            // Ocorreu um erro ao preparar a declaração
+            if ($PDOStatement === false) {
+                // Ocorreu um erro ao preparar a declaração
+                return false;
+            }
+
+            $result = $PDOStatement->execute([
+                ':id' => $id,
+            ]);
+
+            if ($result === false) {
+                // Ocorreu um erro ao executar a query
+                return false;
+            }
+
+            // A exclusão foi bem-sucedida
+            return true;
+        } catch (PDOException $e) {
+            // Captura qualquer exceção do PDO
+            // Você pode tratar a exceção conforme necessário
             return false;
         }
-
-        $result = $PDOStatement->execute([
-            ':id' => $id,
-        ]);
-
-        if ($result === false) {
-            // Ocorreu um erro ao executar a query
-            return false;
-        }
-
-        // A exclusão foi bem-sucedida
-        return true;
-    } catch (PDOException $e) {
-        // Captura qualquer exceção do PDO
-        // Você pode tratar a exceção conforme necessário
-        return false;
     }
+
+    public function filtrarTarefas($estado, $prioridade)
+    {
+
+        $sql = "SELECT * FROM tarefas";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+
+        if ($estado == "" && $prioridade != "") {
+
+            $sql = "SELECT * FROM tarefas WHERE prioridade = :prioridade";
+            $statement = $GLOBALS['pdo']->prepare($sql);
+            $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
+
+        } else if ($prioridade == "" && $estado != "") {
+
+            $sql = "SELECT * FROM tarefas WHERE estado = :estado";
+            $statement = $GLOBALS['pdo']->prepare($sql);
+            $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
+
+        } else if ($estado != "" && $prioridade != "") {
+
+            $sql = "SELECT * FROM tarefas WHERE estado = :estado AND prioridade = :prioridade";
+            $statement = $GLOBALS['pdo']->prepare($sql);
+            $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
+            $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
+
+        }
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

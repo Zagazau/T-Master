@@ -9,6 +9,26 @@ $tarefaRepository = new tarefaRepository();
 
 // Consulta o banco de dados para obter as tarefas
 $tarefas = $tarefaRepository->getAllTarefas();
+
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["filtrar"])) {
+    if (isset($_GET['prioridade']) && isset($_GET['estado'])) {
+        $prioridade = $_GET['prioridade'];
+        $estado = $_GET['estado'];
+    }
+    $tarefas = $tarefaRepository->filtrarTarefas($estado, $prioridade);
+
+    header("Location: main.php?prioridade=$prioridade&estado=$estado");
+    exit();
+}
+
+// Check if filtering parameters are in the URL
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['prioridade']) && isset($_GET['estado'])) {
+    $prioridade = $_GET['prioridade'];
+    $estado = $_GET['estado'];
+
+    // Retrieve filtered tasks using the stored parameters
+    $tarefas = $tarefaRepository->filtrarTarefas($estado, $prioridade);
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,8 +89,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="perfil.php"
-                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                                 class="rounded-circle">
@@ -86,13 +105,32 @@ $tarefas = $tarefaRepository->getAllTarefas();
 
 
                 <div class="container">
-                    <!-- Botoes -->
                     <div class="mb-3">
-                        <button type="button" class="btn btn-primary">Filtrar</button>
+                        <form action="#" method="get" class="form-inline">
+                            <label for="prioridade" class="mr-2">Prioridade:</label>
+                            <select id="prioridade" name="prioridade" class="form-control mr-2">
+                                <option value="">Todas</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <label for="estado" class="mr-2">Estado:</label>
+                            <select id="estado" name="estado" class="form-control mr-2">
+                                <option value="">Todos</option>
+                                <option value="Por fazer">Por fazer</option>
+                                <option value="A ser feita">A ser feita</option>
+                                <option value="Terminada">Terminada</option>
+                            </select>
+
+                            <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
+                        </form>
+
                         <button type="button" class="btn btn-secondary">Pesquisar</button>
                     </div>
 
-                    <!-- Tabela para exibir tarefas -->
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered mt-4">
                             <thead class="thead-dark">
