@@ -4,10 +4,9 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
 
-// Instancia o t
+
 $tarefaRepository = new tarefaRepository();
 
-// Consulta o banco de dados para obter as tarefas
 $tarefas = $tarefaRepository->getAllTarefas();
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["filtrar"])) {
@@ -21,15 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["filtrar"])) {
     exit();
 }
 
-// Check if filtering parameters are in the URL
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['prioridade']) && isset($_GET['estado'])) {
     $prioridade = $_GET['prioridade'];
     $estado = $_GET['estado'];
 
-    // Retrieve filtered tasks using the stored parameters
     $tarefas = $tarefaRepository->filtrarTarefas($estado, $prioridade);
 }
+
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["pesquisar"] === "1" && isset($_GET["titulo_pesquisa"])) {
+    $tituloPesquisa = $_GET["titulo_pesquisa"];
+    $tarefas = $tarefaRepository->pesquisarTarefa($tituloPesquisa);
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,12 +105,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['prioridade']) && isset(
 
             <div class="col-md-9 col-xl-10">
                 <h1 class="mt-3">As Minhas Tarefas</h1>
+                <hr>
                 <br>
 
 
                 <div class="container">
                     <div class="mb-3">
-                        <form action="#" method="get" class="form-inline">
+                        <form action="#" method="get" class="form-inline mb-2">
                             <label for="prioridade" class="mr-2">Prioridade:</label>
                             <select id="prioridade" name="prioridade" class="form-control mr-2">
                                 <option value="">Todas</option>
@@ -128,7 +133,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['prioridade']) && isset(
                             <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
                         </form>
 
-                        <button type="button" class="btn btn-secondary">Pesquisar</button>
+                        <form action="#" method="get" class="form-inline">
+                            <input type="hidden" name="pesquisar" value="1">
+
+                            <label for="titulo_pesquisa" class="mr-2">Pesquisar (Por Título):</label>
+                            <input type="text" id="titulo_pesquisa" name="titulo_pesquisa" class="form-control mr-2"
+                                required>
+
+                            <button type="submit" class="btn btn-secondary">Pesquisar</button>
+                        </form>
                     </div>
 
                     <div class="table-responsive">

@@ -103,8 +103,7 @@ class TarefaRepository
             // A exclusão foi bem-sucedida
             return true;
         } catch (PDOException $e) {
-            // Captura qualquer exceção do PDO
-            // Você pode tratar a exceção conforme necessário
+
             return false;
         }
     }
@@ -136,6 +135,16 @@ class TarefaRepository
 
         }
 
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function pesquisarTarefa($titulo)
+    {
+        $sql = "SELECT * FROM tarefas WHERE titulo LIKE :titulo";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindValue(':titulo', '%' . $titulo . '%', PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
