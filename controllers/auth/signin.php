@@ -7,7 +7,7 @@ require __DIR__ . '/../../infra/db/connection.php';
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utlizadores WHERE email = ? LIMIT 1;');
+$PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE email = ? LIMIT 1;');
 $PDOStatement->bindValue(1, $email);
 $PDOStatement->execute();
 $user = $PDOStatement->fetch();

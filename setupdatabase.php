@@ -42,7 +42,7 @@ $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
 
 #INSERT USER
 $sqlCreate = "INSERT INTO 
-utlizadores (
+utilizadores (
    name, 
    lastname, 
    phoneNumber, 
