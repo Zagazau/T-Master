@@ -11,6 +11,7 @@
     <script src="/../../assets/js/func.js"></script>
 </head>
 
+
 <body>
 
     <div class="container-fluid">
@@ -66,17 +67,9 @@
                 </div>
             </div>
 
-            <div class="col-lg-9 d-flex align-items-center justify-content-center">
-                <div class="container">
-                    <div class="text-center mt-4">
-                        <h1>Informação</h1>
-                        <p>Algumas perguntas frequentes que te ajudam a conhecer-nos melhor
-                        <p>
-                        <div>
-                            <button type="button" class="btn btn-primary">Contacta-nos</button>
-                        </div>
-                    </div>
-
+            <div class="col-md-9 col-xl-10">
+                <div class="container mt-3">
+                    <h1 class="mt-3">Informação</h1>
                     <hr>
 
                     <ul class="list-unstyled">
@@ -99,10 +92,7 @@
                     </ul>
                 </div>
             </div>
-
         </div>
-
-    </div>
     </div>
 
 </body>

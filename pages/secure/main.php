@@ -17,12 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["user"]) && $_POST["us
     $estado = $_POST["estado"];
     $favorita = isset($_POST["favorita"]) ? 1 : 0;
 
+    // Adiciona a tarefa
     $tarefaRepository->createTarefa($titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita);
 
+    // Redireciona para evitar envios duplos do formulário
     header("Location: /main.php");
     exit();
 }
 
+// Consulta o banco de dados para obter as tarefas
 $tarefas = $tarefaRepository->getAllTarefas();
 ?>
 
