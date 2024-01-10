@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                                 <option value="Terminada">Terminada</option>
                             </select>
 
-                            <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
+                            <button type="submit" class="btn btn-outline-success">Filtrar</button>
                         </form>
 
                         <form action="#" method="get" class="form-inline">
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                             <input type="text" id="titulo_pesquisa" name="titulo_pesquisa" class="form-control mr-2"
                                 required>
 
-                            <button type="submit" class="btn btn-secondary">Pesquisar</button>
+                            <button type="submit" class="btn btn-outline-success">Pesquisar</button>
                         </form>
                     </div>
 

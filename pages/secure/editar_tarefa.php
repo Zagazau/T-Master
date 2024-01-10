@@ -1,27 +1,26 @@
 <?php
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
-// Inclua o arquivo que contém a classe TarefaRepository
+
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
 
-// Crie uma instância do TarefaRepository
 $tarefaRepository = new TarefaRepository();
 
-// Obtenha o ID da tarefa da consulta GET
+
 $tarefa_id = isset($_GET['tarefa_id']) ? $_GET['tarefa_id'] : null;
 
-// Verifique se o ID é válido
+
 if (!$tarefa_id) {
-    // Redirecione de volta à página principal ou mostre uma mensagem de erro
+
     header('Location: /main.php');
     exit();
 }
 
-// Obtenha os detalhes da tarefa com base no ID
+
 $tarefa_existente = $tarefaRepository->getTarefaById($tarefa_id);
 
-// Verifique se a tarefa existe
+
 if (!$tarefa_existente) {
-    // Redirecione de volta à página principal ou mostre uma mensagem de erro
+
     header('Location: /main.php');
     exit();
 }
@@ -43,7 +42,6 @@ if (!$tarefa_existente) {
 
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <!-- Barra de Navegação -->
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/"
@@ -93,75 +91,82 @@ if (!$tarefa_existente) {
                 </div>
             </div>
 
-            <!-- Formulário de Edição -->
+
             <div class="col">
                 <div class="container mt-5">
                     <h2 class="mb-4">Editar Tarefa</h2>
-                    <form action="/tmaster/pages/public/processar_edicao.php" method="post">
+                    <form action="/tmaster/pages/public/processar_edicao.php" method="post" class="needs-validation"
+                        novalidate>
                         <input type="hidden" name="tarefa_id" value="<?= $tarefa_existente['id'] ?>">
 
-                        <div class="mb-3">
-                            <label for="novo_titulo" class="form-label">Novo Título:</label>
+                        <div class="form-group">
+                            <label for="novo_titulo">Título:</label>
                             <input type="text" id="novo_titulo" name="novo_titulo" class="form-control"
                                 value="<?= $tarefa_existente['titulo'] ?>" required>
+                            <div class="invalid-feedback">Por favor, preencha este campo.</div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="nova_descricao" class="form-label">Nova Descrição:</label>
+                        <div class="form-group">
+                            <label for="nova_descricao">Descrição:</label>
                             <textarea id="nova_descricao" name="nova_descricao" class="form-control"
                                 rows="4"><?= $tarefa_existente['descricao'] ?></textarea>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="nova_data_inicio" class="form-label">Nova Data de Início:</label>
-                            <input type="date" id="nova_data_inicio" name="nova_data_inicio"
-                                value="<?= $tarefa_existente['data_inicio'] ?>" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nova_data_inicio"> Data de Início:</label>
+                                <input type="date" id="nova_data_inicio" name="nova_data_inicio"
+                                    value="<?= $tarefa_existente['data_inicio'] ?>" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nova_data_fim">Data de Fim:</label>
+                                <input type="date" id="nova_data_fim" name="nova_data_fim"
+                                    value="<?= $tarefa_existente['data_fim'] ?>" class="form-control">
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="nova_data_fim" class="form-label">Nova Data de Fim:</label>
-                            <input type="date" id="nova_data_fim" name="nova_data_fim"
-                                value="<?= $tarefa_existente['data_fim'] ?>" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nova_prioridade">Prioridade (de 1 a 5):</label>
+                                <select id="nova_prioridade" name="nova_prioridade" class="form-control">
+                                    <option value="1" <?= $tarefa_existente['prioridade'] == 1 ? 'selected' : '' ?>>1
+                                    </option>
+                                    <option value="2" <?= $tarefa_existente['prioridade'] == 2 ? 'selected' : '' ?>>2
+                                    </option>
+                                    <option value="3" <?= $tarefa_existente['prioridade'] == 3 ? 'selected' : '' ?>>3
+                                    </option>
+                                    <option value="4" <?= $tarefa_existente['prioridade'] == 4 ? 'selected' : '' ?>>4
+                                    </option>
+                                    <option value="5" <?= $tarefa_existente['prioridade'] == 5 ? 'selected' : '' ?>>5
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="novo_estado">Estado:</label>
+                                <select id="novo_estado" name="novo_estado" class="form-control">
+                                    <option value="Por fazer" <?= $tarefa_existente['estado'] == 'Por fazer' ? 'selected' : '' ?>>Por fazer</option>
+                                    <option value="A ser feita" <?= $tarefa_existente['estado'] == 'A ser feita' ? 'selected' : '' ?>>A ser feita</option>
+                                    <option value="Terminada" <?= $tarefa_existente['estado'] == 'Terminada' ? 'selected' : '' ?>>Terminada</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="nova_prioridade" class="form-label">Nova Prioridade (de 1 a 5):</label>
-                            <select id="nova_prioridade" name="nova_prioridade" class="form-select">
-                                <option value="1" <?= $tarefa_existente['prioridade'] == 1 ? 'selected' : '' ?>>1</option>
-                                <option value="2" <?= $tarefa_existente['prioridade'] == 2 ? 'selected' : '' ?>>2</option>
-                                <option value="3" <?= $tarefa_existente['prioridade'] == 3 ? 'selected' : '' ?>>3</option>
-                                <option value="4" <?= $tarefa_existente['prioridade'] == 4 ? 'selected' : '' ?>>4</option>
-                                <option value="5" <?= $tarefa_existente['prioridade'] == 5 ? 'selected' : '' ?>>5</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="novo_estado" class="form-label">Novo Estado:</label>
-                            <select id="novo_estado" name="novo_estado" class="form-select">
-                                <option value="Por fazer" <?= $tarefa_existente['estado'] == 'Por fazer' ? 'selected' : '' ?>>Por
-                                    fazer</option>
-                                <option value="A ser feita" <?= $tarefa_existente['estado'] == 'A ser feita' ? 'selected' : '' ?>>A
-                                    ser feita</option>
-                                <option value="Terminada" <?= $tarefa_existente['estado'] == 'Terminada' ? 'selected' : '' ?>>
-                                    Terminada</option>
-                            </select>
-                        </div>
-
-                        <div class="form-check mb-3">
+                        <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="nova_favorita" name="nova_favorita"
                                 <?= $tarefa_existente['favorita'] ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="nova_favorita">Nova Favorita</label>
+                            <label class="form-check-label" for="nova_favorita">Favorita</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Certifique-se de incluir Bootstrap JS e outros scripts necessários -->
-
 </body>
 
 </html>
