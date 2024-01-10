@@ -75,7 +75,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a href="/tmaster/controllers/auth/signin.php?user=logout" class="nav-link px-0 align-middle">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>

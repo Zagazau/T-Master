@@ -53,8 +53,10 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
                       unset($_SESSION['errors']);
                     }
                     ?>
-                                    <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit" name="user"
-                                        value="signIn">Login</button>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit" name="user"
+                                            value="signIn">Login</button>
+                                    </div>
 
                                     <p class="text-center text-muted mt-5 mb-0">Não tens conta? <a href="./signup.php"
                                             class="fw-bold text-body"><u>Cria agora</u></a>

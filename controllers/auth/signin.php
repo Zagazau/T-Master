@@ -4,29 +4,34 @@ require_once __DIR__ . '/../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../helpers/validations/app/validate-login-password.php';
 require __DIR__ . '/../../infra/db/connection.php';
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-$PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE email = ? LIMIT 1;');
-$PDOStatement->bindValue(1, $email);
-$PDOStatement->execute();
-$user = $PDOStatement->fetch();
-
-if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user'] = $user;
-} else {
-    echo ("error");
+if (isset($_GET['user']) && $_GET['user'] == 'logout') {
+    logout();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
 
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE email = ? LIMIT 1;');
+    $PDOStatement->bindValue(1, $email);
+    $PDOStatement->execute();
+    $user = $PDOStatement->fetch();
 
-if (isset($_POST['user'])) {
-    if ($_POST['user'] == 'signIn') {
-        login($_POST);
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user'] = $user;
+    } else {
+        echo ("error");
     }
 
-    if ($_POST['user'] == 'logout') {
-        logout();
+    if (isset($_POST['user'])) {
+        if ($_POST['user'] == 'signIn') {
+            login($_POST);
+        }
+
+        if ($_POST['user'] == 'logout') {
+            logout();
+        }
     }
 }
 
