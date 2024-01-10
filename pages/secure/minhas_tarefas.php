@@ -1,5 +1,4 @@
 <?php
-// Certifique-se de incluir sua lógica de conexão com o banco de dados aqui
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
@@ -95,8 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                     <div class="dropdown pb-4">
                         <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
+                            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
+                                hugenerd" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
@@ -130,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                                 <option value="Terminada">Terminada</option>
                             </select>
 
-                            <button type="submit" class="btn btn-outline-success">Filtrar</button>
+                            <button type="submit" class="btn btn-info">Filtrar</button>
                         </form>
 
                         <form action="#" method="get" class="form-inline">
@@ -140,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                             <input type="text" id="titulo_pesquisa" name="titulo_pesquisa" class="form-control mr-2"
                                 required>
 
-                            <button type="submit" class="btn btn-outline-success">Pesquisar</button>
+                            <button type="submit" class="btn btn-info">Pesquisar</button>
                         </form>
                     </div>
 

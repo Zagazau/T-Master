@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <script src="/../../assets/js/func.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -72,7 +75,7 @@
                         <form action="/upload" method="post" enctype="multipart/form-data">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
                                 <label for="perfilImageInput">
-                                    <img id="perfilImage" class="rounded-circle img-fluid" width="120px"
+                                    <img id="perfilImage" class="rounded-circle img-fluid" width="90px"
                                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                                 </label>
                                 <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
@@ -96,15 +99,100 @@
                                     <input type="text" class="form-control" placeholder="Aparecer email" value="">
                                 </div>
                             </div>
+                            <hr>
                             <div class="mt-2 text-center">
-                                <button class="btn btn-primary profile-button" type="button">Editar perfil</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#editarPerfilModal">
+                                    Editar Perfil
+                                </button>
+                            </div>
+
+                            <div class="modal fade" id="editarPerfilModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="mb-3">
+                                                <label for="nome" class="form-label">Nome: </label>
+                                                <input type="text" id="nome" name="nome" class="form-control" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">E-mail: </label>
+                                                <input type="text" id="email" name="email" class="form-control"
+                                                    required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">Username:</label>
+                                                <input type="text" id="username" name="username" class="form-control"
+                                                    required>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-success"
+                                                    data-dismiss="modal">Guardar Alterações</button>
+                                                <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
+                                                    data-target="#alterarSenhaModal">
+                                                    Alterar Password
+                                                </button>
+                                            </div>
+
+                                            <div class="modal fade" id="alterarSenhaModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Alterar
+                                                                Password
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="PassAtual" class="form-label">Password
+                                                                    Atual:</label>
+                                                                <input type="password" id="PassAtual" name="PassAtual"
+                                                                    class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="novaPass" class="form-label">Nova
+                                                                    Password:</label>
+                                                                <input type="password" id="novaPass" name="novaPass"
+                                                                    class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="confirmarPass" class="form-label">Confirmar
+                                                                    Passsword:</label>
+                                                                <input type="password" id="confirmarPass"
+                                                                    name="confirmarPass" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-success"
+                                                                data-dismiss="modal">Guardar Alterações</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 </body>
 

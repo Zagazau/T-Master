@@ -87,7 +87,6 @@ class TarefaRepository
             $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
 
             if ($PDOStatement === false) {
-                // Ocorreu um erro ao preparar a declaração
                 return false;
             }
 
@@ -96,11 +95,9 @@ class TarefaRepository
             ]);
 
             if ($result === false) {
-                // Ocorreu um erro ao executar a query
+
                 return false;
             }
-
-            // A exclusão foi bem-sucedida
             return true;
         } catch (PDOException $e) {
 
