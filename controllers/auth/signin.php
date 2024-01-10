@@ -21,7 +21,7 @@ if ($user && password_verify($password, $user['password'])) {
 
 
 if (isset($_POST['user'])) {
-    if ($_POST['user'] == 'login') {
+    if ($_POST['user'] == 'signIn') {
         login($_POST);
     }
 
@@ -84,7 +84,7 @@ function logout()
     }
 
     setcookie('id', '', time() - 3600, "/");
-    setcookie('name', '', time() - 3600, "/");
+    setcookie('nome', '', time() - 3600, "/");
 
     $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/tmaster';
     header('Location: ' . $home_url);
