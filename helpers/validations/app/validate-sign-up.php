@@ -7,20 +7,20 @@ function isSignUpValid($req)
     }
 
     if (empty($req['nome']) || strlen($req['nome']) < 3 || strlen($req['nome']) > 255) {
-        $errors['nome'] = 'The name field cannot be empty and must be between 3 and 255 characters';
+        $errors['nome'] = 'O nome não pode estar vazio e deve de conter entre 3 e 255 caracteres.';
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'The Email field must not be empty and must have an email format, such as: name@example.com.';
+        $errors['email'] = 'O email não pode estar vazio e tem de ter um formato do tipo nome@exemplo.com.';
     }
 
     if (getByEmail($req['email'])) {
-        $errors['email'] = 'Email already registered in our system. If you cannot remember your password, please contact us.';
+        $errors['email'] = 'Email já existetnte.';
         return ['invalid' => $errors];
     }
 
     if (empty($req['password']) || strlen($req['password']) < 6) {
-        $errors['password'] = 'The Password field cannot be empty and must be at least 6 characters long.';
+        $errors['password'] = 'A password não pode estar vazia e deve conter no mínimo 6 caracteres.';
     }
 
 

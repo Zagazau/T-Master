@@ -14,11 +14,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-        body {
+        .container-fluid {
             background-image: url('../../assets/images/fundo.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            min-height: 100vh;
+
         }
     </style>
 </head>
@@ -202,7 +204,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
 </body>
 
 </html>

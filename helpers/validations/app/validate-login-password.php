@@ -7,11 +7,11 @@ function isLoginValid($req)
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
+        $errors['email'] = ' O email deve ter um formato do tipo nome@exemplo.com';
     }
 
     if (empty($req['password']) || strlen($req['password']) < 6) {
-        $errors['password'] = 'The Password field cannot be empty and must be at least 6 characters long.';
+        $errors['password'] = 'A password deve conter no mínimo 6 caracteres';
     }
 
     if (isset($errors)) {
