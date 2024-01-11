@@ -91,8 +91,6 @@ $title = '- Sign Up';
                                                     class="form-control form-control-lg" placeholder="Password" />
                                             </div>
 
-                                            <!-- Adicione outros campos do formulário conforme necessário -->
-
                                             <div class="d-flex justify-content-center">
                                                 <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit"
                                                     name="user" value="signUp">Registar</button>

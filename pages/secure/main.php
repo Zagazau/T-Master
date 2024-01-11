@@ -1,5 +1,4 @@
 <?php
-// Certifique-se de incluir sua lógica de conexão com o banco de dados aqui
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';

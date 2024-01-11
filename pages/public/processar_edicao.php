@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $tarefaRepository = new TarefaRepository();
     
-    // Obtém os dados existentes da tarefa
+    
     $tarefa_existente = $tarefaRepository->getTarefaById($tarefa_id);
 
-    // Atualiza apenas os campos fornecidos, mantendo os dados existentes para os não fornecidos
+    
     $titulo = $novo_titulo ?? $tarefa_existente['titulo'];
     $descricao = $nova_descricao ?? $tarefa_existente['descricao'];
 
-    // Atualiza a tarefa
+    
     $tarefaRepository->updateTarefa(
         $tarefa_id,
         $titulo,
