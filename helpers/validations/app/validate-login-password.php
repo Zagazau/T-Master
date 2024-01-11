@@ -3,7 +3,7 @@
 function isLoginValid($req)
 {
     foreach ($req as $key => $value) {
-        $req[$key] =  trim($req[$key]);
+        $req[$key] = trim($req[$key]);
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
@@ -28,11 +28,11 @@ function isPasswordValid($req)
         $user = getByEmail($req['email']);
 
         if (!$user) {
-            $errors['email'] = 'Wrong email or password.';
+            $errors['email'] = 'Introduza um email ou password válida.';
         }
 
         if (!password_verify($req['password'], $user['password'])) {
-            $errors['password'] = 'Wrong email or password.';
+            $errors['password'] = 'Introduza um email ou password válida..';
         }
 
         if (isset($errors)) {

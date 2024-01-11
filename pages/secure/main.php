@@ -37,10 +37,19 @@ $tarefas = $tarefaRepository->getAllTarefas();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+        body {
+            background-image: url('../../assets/images/fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row flex-nowrap">
 
@@ -75,7 +84,8 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li>
-                            <a href="/tmaster/controllers/auth/signin.php?user=logout" class="nav-link px-0 align-middle">
+                            <a href="/tmaster/controllers/auth/signin.php?user=logout"
+                                class="nav-link px-0 align-middle">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
@@ -95,11 +105,16 @@ $tarefas = $tarefaRepository->getAllTarefas();
             </div>
 
             <div class="col-md-9 col-xl-10">
-                <h1 class="mt-3">Bem-vindo,
-                    <?= $user['nome'] ?? null ?>!
-                </h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="mt-3">Bem-vindo,
+                        <?= $user['nome'] ?? null ?>!
+                    </h1>
+                    <h2 id="current-time" class="h2 text-dark p-3 rounded text-center mt-3"></h2>
+
+                </div>
                 <hr>
                 <br>
+
 
                 <div class="container">
                     <h4>As tuas tarefas</h4>
@@ -227,5 +242,23 @@ $tarefas = $tarefaRepository->getAllTarefas();
     </div>
 
 </body>
+
+<script>
+    function updateClock() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+
+        var formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+        document.getElementById('current-time').innerText = formattedTime;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+
 
 </html>
