@@ -13,7 +13,8 @@ class TarefaRepository
             data_fim, 
             prioridade, 
             estado, 
-            favorita) 
+            favorita,
+            utilizador_id) 
         VALUES (
             :titulo, 
             :descricao, 
@@ -21,7 +22,8 @@ class TarefaRepository
             :data_fim, 
             :prioridade, 
             :estado, 
-            :favorita
+            :favorita,
+            :utilizador_id
         )";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -34,6 +36,7 @@ class TarefaRepository
             ':prioridade' => $prioridade,
             ':estado' => $estado,
             ':favorita' => $favorita,
+            ':utilizador_id' => $_SESSION['id']
         ]);
     }
 
@@ -46,12 +49,18 @@ class TarefaRepository
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+
     public function getAllTarefas()
-    {
-        $sql = "SELECT * FROM tarefas";
-        $statement = $GLOBALS['pdo']->query($sql);
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
+{
+    $utilizador_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+
+    $sql = "SELECT * FROM tarefas where utilizador_id = :utilizador_id";
+    $statement = $GLOBALS['pdo']->prepare($sql);
+    $statement->bindParam(':utilizador_id', $utilizador_id, PDO::PARAM_INT);
+
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function updateTarefa($id, $titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita)
     {

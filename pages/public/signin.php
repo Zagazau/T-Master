@@ -2,6 +2,14 @@
 $title = '- Sign In';
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 ?>
+<?php
+if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
+foreach ($_SESSION['errors'] as $error) {
+    echo '<p class="alert" style="color: red;">' . $error . '</p>';
+    }
+    unset($_SESSION['errors']);
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -45,14 +53,7 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
                                             </label>
                                         </div>
                                     </div>
-                                    <?php
-                    if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
-                      foreach ($_SESSION['errors'] as $error) {
-                        echo '<p class="alert" style="color: red;">' . $error . '</p>';
-                      }
-                      unset($_SESSION['errors']);
-                    }
-                    ?>
+
                                     <div class="d-flex justify-content-center">
                                         <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit" name="user"
                                             value="signIn">Login</button>
