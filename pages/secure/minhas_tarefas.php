@@ -87,9 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                         </li>
                         <hr>
                         <li>
-                            <a href="info.php" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
-                                <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d-  e d-sm-inline">Informação</span>
+                            <a href="info.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Calendário</span>
                             </a>
                         </li>
                         <hr>

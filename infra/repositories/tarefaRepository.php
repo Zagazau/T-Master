@@ -51,16 +51,16 @@ class TarefaRepository
 
 
     public function getAllTarefas()
-{
-    $utilizador_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    {
+        $utilizador_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
-    $sql = "SELECT * FROM tarefas where utilizador_id = :utilizador_id";
-    $statement = $GLOBALS['pdo']->prepare($sql);
-    $statement->bindParam(':utilizador_id', $utilizador_id, PDO::PARAM_INT);
+        $sql = "SELECT * FROM tarefas where utilizador_id = :utilizador_id";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindParam(':utilizador_id', $utilizador_id, PDO::PARAM_INT);
 
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function updateTarefa($id, $titulo, $descricao, $data_inicio, $data_fim, $prioridade, $estado, $favorita)
     {
@@ -154,5 +154,30 @@ class TarefaRepository
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getTarefasCalendario($userId)
+    {
+        $sql = "SELECT t.titulo, t.data_inicio
+                FROM tarefas t
+                WHERE t.utilizador_id = :user_id AND t.data_inicio IS NOT NULL";
+
+        $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+        $PDOStatement->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $PDOStatement->execute();
+
+        $events = [];
+
+        while ($tarefa = $PDOStatement->fetch()) {
+            $start = date('Y-m-d', strtotime($tarefa['data_inicio']));
+
+            $events[] = [
+                'title' => $tarefa['titulo'],
+                'start' => $start,
+            ];
+        }
+
+        return $events;
+    }
+
 }
 ?>

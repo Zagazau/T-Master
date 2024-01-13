@@ -1,3 +1,12 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
+
+$tarefaRepository = new TarefaRepository();
+$userId = $_SESSION['id'];
+$tarefasParaCalendario = $tarefaRepository->getTarefasCalendario($userId);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +17,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <script src="/../../assets/js/func.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 
     <style>
         body {
@@ -16,6 +25,12 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+        }
+
+        #calendar {
+            width: 80vw;
+            height: 80vh;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -50,9 +65,9 @@
                         </li>
                         <hr>
                         <li>
-                            <a href="info.php" data-bs-toggle="col lapse" class="nav-link px-0 align-middle">
-                                <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d-  e d-sm-inline">Informação</span>
+                            <a href="info.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Calendário</span>
                             </a>
                         </li>
                         <hr>
@@ -78,31 +93,28 @@
 
             <div class="col-md-9 col-xl-10">
                 <div class="container mt-3">
-                    <h1 class="mt-3">Informação</h1>
+                    <h1 class="mt-3">Calendário</h1>
                     <hr>
-
-                    <ul class="list-unstyled">
-                        <li>
-                            <h5>O que é o T-Master?</h5>
-                            <p class="text-muted">O T-Master é uma aplicação que te permite seres mais organizado no teu
-                                dia-a-dia com as tuas tarefas, em que poderás, priorizar, calendarizar, favoritar etc.
-                            </p>
-                        </li>
-                        <hr>
-                        <li>
-                            <h5>O que fazer no T-Master?</h5>
-                            <p class="text-muted">Tens inumeras coisas p fazer........</p>
-                        </li>
-                        <hr>
-                        <li>
-                            <h5>Como surgiu?</h5>
-                            <p class="text-muted">O T-Master é um projeto universitário etc</p>
-                        </li>
-                    </ul>
+                    <div id='calendar'></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: <?php echo json_encode($tarefasParaCalendario); ?>,
+                eventClick: function (info) {
+                    alert('Tarefa: ' + info.event.title);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+
 
 </body>
 
