@@ -84,24 +84,25 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         <hr>
                         <li>
                             <a href="/tmaster/controllers/auth/signin.php?user=logout"
-                                class="nav-link px-0 align-middle">
+                                class="nav-link px-0 align-middle" data-toggle="modal"
+                                data-target="#confirmLogoutModal">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
                         </li>
-
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
+                            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
+                                hugenerd" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
                     </div>
                 </div>
             </div>
+
 
             <div class="col-md-9 col-xl-10">
                 <div class="d-flex justify-content-between align-items-center">

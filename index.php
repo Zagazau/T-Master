@@ -52,7 +52,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
             <a href="#contact" class="nav-link px-2 link-dark" style="color: gray;">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-secondary ml-2 py-1 w-25 mb-2" type="button" href="./pages/public/signin.php">
+            <a class="btn btn-outline-secondary ml-2 mb-2" href="./pages/public/signin.php" style="width: 25%;">
               Login
             </a>
           </li>
@@ -76,7 +76,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
                   categorizar,
                   priorizar e partilhar as tuas tarefas. Define Estados, destaca as tuas tarefas favoritas e simplifica
                   a gestão do teu tempo.</p>
-                <a class="btn btn-primary btn-xl" href="./pages/public/signup.php">Cria Conta</a>
+                <a class="btn btn-info btn-xl" href="./pages/public/signup.php">Cria Conta</a>
               </div>
             </div>
           </div>

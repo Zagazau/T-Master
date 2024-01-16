@@ -4,8 +4,8 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
 ?>
 <?php
 if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
-foreach ($_SESSION['errors'] as $error) {
-    echo '<p class="alert" style="color: red;">' . $error . '</p>';
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<p class="alert" style="color: red;">' . $error . '</p>';
     }
     unset($_SESSION['errors']);
 }
@@ -55,7 +55,7 @@ foreach ($_SESSION['errors'] as $error) {
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit" name="user"
+                                        <button class="btn btn-info btn-lg px-4 mt-3" type="submit" name="user"
                                             value="signIn">Login</button>
                                     </div>
 

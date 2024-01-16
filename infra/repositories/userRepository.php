@@ -158,4 +158,3 @@ function createNewUser($user)
 
     return false;
 }
-

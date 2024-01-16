@@ -1,3 +1,52 @@
+<?php
+require_once __DIR__ . '/../../infra/db/connection.php';
+require_once __DIR__ . '/../../infra/repositories/userRepository.php';
+session_start();
+
+
+//Não está a funcionar o update À bd
+$user = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    $novoNome = isset($_POST['nome']) ? $_POST['nome'] : null;
+    $novoEmail = isset($_POST['email']) ? $_POST['email'] : null;
+    $novoUsername = isset($_POST['username']) ? $_POST['username'] : null;
+
+    $userId = $_SESSION['id'];
+
+    $usuarioExistente = getById($userId);
+
+
+    $novoNome = $novoNome ?? $usuarioExistente['nome'];
+    $novoEmail = $novoEmail ?? $usuarioExistente['email'];
+    $novoUsername = $novoUsername ?? $usuarioExistente['username'];
+
+
+    updateUser([
+        'id' => $userId,
+        'nome' => $novoNome,
+        'email' => $novoEmail,
+        'username' => $novoUsername,
+    ]);
+
+
+    header("Location: /perfil.php");
+    exit();
+}
+
+if (isset($_SESSION['id'])) {
+    $id = $_SESSION['id'];
+
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM utilizadores WHERE id = ?;');
+    $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
+    $PDOStatement->execute();
+    $user = $PDOStatement->fetch();
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,9 +103,9 @@
                         </li>
                         <hr>
                         <li>
-                            <a href="info.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d-none d-sm-inline">Informação</span>
+                            <a href="info.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Calendário</span>
                             </a>
                         </li>
                         <hr>
@@ -91,23 +140,28 @@
                                 </label>
                                 <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
                                     style="display: none;" onchange="displayImage(this)">
-                                <span class="font-weight-bold mt-1">Aparecer username</span>
+                                <span class="font-weight-bold mt-1">
+                                    <?= $user['username'] ?>
+                                </span>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="p-3 py-5">
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-12">
-                                    <label class="labels mt-2">Nome Completo</label>
-                                    <input type="text" class="form-control" placeholder="Aparecer nome completo"
-                                        value="">
+                                    <label class="labels mt-1 mb-1">Nome Completo</label>
+                                    <p class="form-control mb-3">
+                                        <?= $user['nome'] ?>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-12">
-                                    <label class="labels mt-2">Email</label>
-                                    <input type="text" class="form-control" placeholder="Aparecer email" value="">
+                                    <label class="labels mt-1 mb-0">Email</label>
+                                    <p class="form-control mb-0">
+                                        <?= $user['email'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -132,22 +186,22 @@
 
                                             <div class="mb-3">
                                                 <label for="nome" class="form-label">Nome: </label>
-                                                <input type="text" id="nome" name="nome" class="form-control" required>
+                                                <input type="text" id="nome" name="nome" class="form-control"
+                                                    value="<?= $user['nome'] ?>" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">E-mail: </label>
                                                 <input type="text" id="email" name="email" class="form-control"
-                                                    required>
+                                                    value="<?= $user['email'] ?>" required>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Username:</label>
                                                 <input type="text" id="username" name="username" class="form-control"
-                                                    required>
+                                                    value="<?= $user['username'] ?>" required>
                                             </div>
 
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-success"
+                                                <button type="submit" class="btn btn-success"
                                                     data-dismiss="modal">Guardar Alterações</button>
                                                 <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
                                                     data-target="#alterarSenhaModal">

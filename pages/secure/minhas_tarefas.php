@@ -194,11 +194,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                                         </td>
                                         <td>
                                             <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
-                                                class="btn btn-primary">Editar</a>
+                                                class="btn btn-primary btn-sm">Editar</a>
                                             <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
                                                 onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
                                                 <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -7,21 +7,21 @@ $title = '- Sign Up';
 <main>
     <section>
         <?php
-    if (isset($_SESSION['success'])) {
-      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-      echo $_SESSION['success'] . '<br>';
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-      unset($_SESSION['success']);
-    }
-    if (isset($_SESSION['errors'])) {
-      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-      foreach ($_SESSION['errors'] as $error) {
-        echo $error . '<br>';
-      }
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-      unset($_SESSION['errors']);
-    }
-    ?>
+        if (isset($_SESSION['success'])) {
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+            echo $_SESSION['success'] . '<br>';
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['errors'])) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+            foreach ($_SESSION['errors'] as $error) {
+                echo $error . '<br>';
+            }
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+            unset($_SESSION['errors']);
+        }
+        ?>
     </section>
 
     <!DOCTYPE html PUBLIC>
@@ -42,21 +42,21 @@ $title = '- Sign Up';
         <main>
             <section>
                 <?php
-            if (isset($_SESSION['success'])) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                echo $_SESSION['success'] . '<br>';
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                unset($_SESSION['success']);
-            }
-            if (isset($_SESSION['errors'])) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
+                if (isset($_SESSION['success'])) {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                    echo $_SESSION['success'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                    unset($_SESSION['success']);
                 }
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                unset($_SESSION['errors']);
-            }
-            ?>
+                if (isset($_SESSION['errors'])) {
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                    foreach ($_SESSION['errors'] as $error) {
+                        echo $error . '<br>';
+                    }
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                    unset($_SESSION['errors']);
+                }
+                ?>
             </section>
 
             <section class="vh-100 bg-image">
@@ -92,8 +92,8 @@ $title = '- Sign Up';
                                             </div>
 
                                             <div class="d-flex justify-content-center">
-                                                <button class="btn btn-outline-light btn-lg px-4 mt-3" type="submit"
-                                                    name="user" value="signUp">Registar</button>
+                                                <button class="btn btn-info btn-lg px-4 mt-3" type="submit" name="user"
+                                                    value="signUp">Registar</button>
                                             </div>
 
                                             <p class="text-center text-muted mt-5 mb-0">Já tens conta? <a
