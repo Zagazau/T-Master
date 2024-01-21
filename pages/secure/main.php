@@ -139,9 +139,6 @@ $tarefas = $tarefaRepository->getAllTarefas();
                 </div>
             </div>
 
-
-
-
             <div class="col-md-9 col-xl-10">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="mt-3">Bem-vindo,
