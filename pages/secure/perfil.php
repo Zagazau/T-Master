@@ -3,35 +3,26 @@ require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/userRepository.php';
 session_start();
 
-
-//Não está a funcionar o update À bd
 $user = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-    $novoNome = isset($_POST['nome']) ? $_POST['nome'] : null;
-    $novoEmail = isset($_POST['email']) ? $_POST['email'] : null;
-    $novoUsername = isset($_POST['username']) ? $_POST['username'] : null;
-
     $userId = $_SESSION['id'];
 
-    $usuarioExistente = getById($userId);
+    if ($userData = getById($userId)) {
+        $novoNome = isset($_POST['nome']) ? $_POST['nome'] : $userData['nome'];
+        $novoEmail = isset($_POST['email']) ? $_POST['email'] : $userData['email'];
+        $novoUsername = isset($_POST['username']) ? $_POST['username'] : $userData['username'];
 
+        updateUser([
+            'id' => $userId,
+            'nome' => $novoNome,
+            'email' => $novoEmail,
+            'username' => $novoUsername,
+        ]);
 
-    $novoNome = $novoNome ?? $usuarioExistente['nome'];
-    $novoEmail = $novoEmail ?? $usuarioExistente['email'];
-    $novoUsername = $novoUsername ?? $usuarioExistente['username'];
-
-
-    updateUser([
-        'id' => $userId,
-        'nome' => $novoNome,
-        'email' => $novoEmail,
-        'username' => $novoUsername,
-    ]);
-
-
-    header("Location: /perfil.php");
-    exit();
+        header("Location: /tmaster/pages/secure/perfil.php");
+        exit();
+    }
 }
 
 if (isset($_SESSION['id'])) {
@@ -43,8 +34,6 @@ if (isset($_SESSION['id'])) {
     $user = $PDOStatement->fetch();
 }
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -128,10 +117,11 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
 
-            <div class="container rounded bg-white my-5 mt-3">
+            <div class="container-fluid">
                 <div class="row justify-content-center align-items-start">
                     <div class="col-md-12 text-center">
-                        <h1 class="mt-4">Perfil</h1>
+                        <h1 class="mt-4 text-left">Perfil</h1>
+                        <hr>
                         <form action="/upload" method="post" enctype="multipart/form-data">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
                                 <label for="perfilImageInput">
@@ -147,114 +137,64 @@ if (isset($_SESSION['id'])) {
                         </form>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
-                        <div class="p-3 py-5">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="labels mt-1 mb-1">Nome Completo</label>
-                                    <p class="form-control mb-3">
-                                        <?= $user['nome'] ?>
-                                    </p>
+                        <div class="p-3 py-2">
+                            <form action="/tmaster/pages/secure/perfil.php" method="post">
+                                <div class="form-group mb-2">
+                                    <label for="nome" class="labels mt-1 mb-1">Nome Completo</label>
+                                    <input type="text" id="nome" name="nome" class="form-control"
+                                        value="<?= $user['nome'] ?>">
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="labels mt-1 mb-0">Email</label>
-                                    <p class="form-control mb-0">
-                                        <?= $user['email'] ?>
-                                    </p>
+                                <div class="form-group mb-2">
+                                    <label for="username" class="labels mt-1 mb-1">Username</label>
+                                    <input type="username" id="username" name="username" class="form-control"
+                                        value="<?= $user['username'] ?>">
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="mt-2 text-center">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editarPerfilModal">
-                                    Editar Perfil
-                                </button>
-                            </div>
-
-                            <div class="modal fade" id="editarPerfilModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="mb-3">
-                                                <label for="nome" class="form-label">Nome: </label>
-                                                <input type="text" id="nome" name="nome" class="form-control"
-                                                    value="<?= $user['nome'] ?>" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">E-mail: </label>
-                                                <input type="text" id="email" name="email" class="form-control"
-                                                    value="<?= $user['email'] ?>" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="username" class="form-label">Username:</label>
-                                                <input type="text" id="username" name="username" class="form-control"
-                                                    value="<?= $user['username'] ?>" required>
-                                            </div>
-
-                                            <div class="text-end">
-                                                <button type="submit" class="btn btn-success"
-                                                    data-dismiss="modal">Guardar Alterações</button>
-                                                <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
-                                                    data-target="#alterarSenhaModal">
-                                                    Alterar Password
-                                                </button>
-                                            </div>
-
-                                            <div class="modal fade" id="alterarSenhaModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Alterar
-                                                                Password
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="PassAtual" class="form-label">Password
-                                                                    Atual:</label>
-                                                                <input type="password" id="PassAtual" name="PassAtual"
-                                                                    class="form-control" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="novaPass" class="form-label">Nova
-                                                                    Password:</label>
-                                                                <input type="password" id="novaPass" name="novaPass"
-                                                                    class="form-control" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="confirmarPass" class="form-label">Confirmar
-                                                                    Passsword:</label>
-                                                                <input type="password" id="confirmarPass"
-                                                                    name="confirmarPass" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-success"
-                                                                data-dismiss="modal">Guardar Alterações</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group mb-2">
+                                    <label for="email" class="labels mt-1 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        value="<?= $user['email'] ?>">
                                 </div>
-
-                            </div>
+                                <hr>
+                                <div class="mt-2 text-center">
+                                    <button type="submit" name="submit" class="btn btn-success">
+                                        Guardar Alterações
+                                    </button>
+                                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
+                                        data-target="#alterarSenhaModal">
+                                        Editar Password
+                                    </button>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Editar Senha -->
+        <div class="modal fade" id="alterarSenhaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterar Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="novaPass" class="form-label">Nova Password:</label>
+                            <input type="password" id="novaPass" name="novaPass" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmarNovaPass" class="form-label">Confirmar Password:</label>
+                            <input type="password" id="confirmarNovaPass" name="confirmarNovaPass" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Guardar Alterações</button>
                     </div>
                 </div>
             </div>

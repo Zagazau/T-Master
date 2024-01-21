@@ -3,9 +3,6 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
 
-
-
-
 $tarefaRepository = new tarefaRepository();
 
 $tarefas = $tarefaRepository->getAllTarefas();
@@ -107,7 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
                                 hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
+                            <?php if (isset($_SESSION['username'])): ?>
+                                <span class="d-none d-sm-inline mx-1">
+                                    <?= $user['username'] ?>
+                                </span>
+                            <?php endif; ?>
                         </a>
                     </div>
                 </div>

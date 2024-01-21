@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS utilizadores (
     nome VARCHAR(255),
     email VARCHAR(255),
     role_id INT,
+    foto_perfil LONGBLOB,
     UNIQUE KEY (username),
     FOREIGN KEY (role_id) REFERENCES role(id)
 );
