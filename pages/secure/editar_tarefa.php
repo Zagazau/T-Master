@@ -73,9 +73,9 @@ if (!$tarefa_existente) {
                         </li>
                         <hr>
                         <li>
-                            <a href="info.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="bi bi-question-circle"></i>
-                                <span class="ms-1 d-none d-sm-inline">Informação</span>
+                            <a href="info.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Calendário</span>
                             </a>
                         </li>
                         <hr>
@@ -169,6 +169,7 @@ if (!$tarefa_existente) {
 
                         <div class="form-group mt-3">
                             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            <a href="minhas_tarefas.php" class="btn btn-danger">Cancelar</a>
                         </div>
                     </form>
                 </div>
