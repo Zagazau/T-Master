@@ -92,6 +92,13 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </li>
                         <hr>
                         <li>
+                            <a href="partilhar.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Partilhar</span>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
                             <a href="#confirmLogoutModal" class="nav-link px-0 align-middle" data-toggle="modal">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
