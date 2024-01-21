@@ -55,7 +55,7 @@ class TarefaRepository
         $statement = $GLOBALS['pdo']->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
-        
+
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
@@ -130,46 +130,46 @@ class TarefaRepository
     }
 
     public function filtrarTarefas($utilizadorId, $estado, $prioridade)
-{
-    $sql = "SELECT * FROM tarefas WHERE utilizador_id = :utilizador_id";
-
-    // Adiciona condições adicionais se necessário
-    if ($estado != "") {
-        $sql .= " AND estado = :estado";
-    }
-
-    if ($prioridade != "") {
-        $sql .= " AND prioridade = :prioridade";
-    }
-
-    $statement = $GLOBALS['pdo']->prepare($sql);
-    $statement->bindParam(':utilizador_id', $utilizadorId, PDO::PARAM_INT);
-
-    // Adiciona valores aos parâmetros se necessário
-    if ($estado != "") {
-        $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
-    }
-
-    if ($prioridade != "") {
-        $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
-    }
-
-    $statement->execute();
-
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-}
-
-
-
-    public function pesquisarTarefa($titulo)
     {
-        $sql = "SELECT * FROM tarefas WHERE titulo LIKE :titulo";
+        $sql = "SELECT * FROM tarefas WHERE utilizador_id = :utilizador_id";
+
+        if ($estado != "") {
+            $sql .= " AND estado = :estado";
+        }
+
+        if ($prioridade != "") {
+            $sql .= " AND prioridade = :prioridade";
+        }
+
         $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindParam(':utilizador_id', $utilizadorId, PDO::PARAM_INT);
+
+        if ($estado != "") {
+            $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
+        }
+
+        if ($prioridade != "") {
+            $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
+        }
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public function pesquisarTarefa($userId, $titulo)
+    {
+        $sql = "SELECT * FROM tarefas WHERE utilizador_id = :userId AND titulo LIKE :titulo";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
         $statement->bindValue(':titulo', '%' . $titulo . '%', PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function getTarefasCalendario($userId)
     {

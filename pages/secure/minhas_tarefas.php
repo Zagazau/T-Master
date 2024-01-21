@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['prioridade']) && isset(
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["pesquisar"] === "1" && isset($_GET["titulo_pesquisa"])) {
     $tituloPesquisa = $_GET["titulo_pesquisa"];
-    $tarefas = $tarefaRepository->pesquisarTarefa($tituloPesquisa);
+    $tarefas = $tarefaRepository->pesquisarTarefa($_SESSION['id'], $tituloPesquisa);
 }
 ?>
 
@@ -47,12 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <style>
-    body {
-        background-image: url('../../assets/images/fundo.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+        body {
+            background-image: url('../../assets/images/fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
 
 </head>
@@ -174,38 +174,38 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                             </thead>
                             <tbody>
                                 <?php foreach ($tarefas as $tarefa): ?>
-                                <tr>
-                                    <td>
-                                        <?= $tarefa['titulo'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['descricao'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['data_inicio'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['data_fim'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['prioridade'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['estado'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
-                                    </td>
-                                    <td>
-                                        <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
-                                            class="btn btn-primary">Editar</a>
-                                        <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
-                                            onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
-                                            <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <?= $tarefa['titulo'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['descricao'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['data_inicio'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['data_fim'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['prioridade'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['estado'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
+                                        </td>
+                                        <td>
+                                            <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
+                                                class="btn btn-primary">Editar</a>
+                                            <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
+                                                onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                                                <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
