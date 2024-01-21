@@ -50,7 +50,13 @@ CREATE TABLE IF NOT EXISTS role (
 CREATE TABLE IF NOT EXISTS partilhaTarefa (
     id INT AUTO_INCREMENT PRIMARY KEY,
     partilha_id INT,
+    remetente_id INT,
+    destinatario_id INT,
     tarefa_id INT,
     FOREIGN KEY (partilha_id) REFERENCES partilha(id),
-    FOREIGN KEY (tarefa_id) REFERENCES tarefas(id)
+    FOREIGN KEY (remetente_id) REFERENCES utilizadores(id),
+    FOREIGN KEY (destinatario_id) REFERENCES utilizadores(id),
+    FOREIGN KEY (tarefa_id) REFERENCES tarefas(id),
+    UNIQUE KEY (partilha_id, tarefa_id)
 );
+

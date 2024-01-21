@@ -49,6 +49,22 @@ class TarefaRepository
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getUserIdByEmail($email)
+    {
+        $sql = "SELECT id FROM utilizadores WHERE email = :email LIMIT 1";
+        $statement = $GLOBALS['pdo']->prepare($sql);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->execute();
+        
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return $result['id'];
+        } else {
+            return null;
+        }
+    }
+
 
     public function getAllTarefas()
     {
@@ -113,37 +129,37 @@ class TarefaRepository
         }
     }
 
-    public function filtrarTarefas($estado, $prioridade)
-    {
+    public function filtrarTarefas($utilizadorId, $estado, $prioridade)
+{
+    $sql = "SELECT * FROM tarefas WHERE utilizador_id = :utilizador_id";
 
-        $sql = "SELECT * FROM tarefas";
-        $statement = $GLOBALS['pdo']->prepare($sql);
-
-        if ($estado == "" && $prioridade != "") {
-
-            $sql = "SELECT * FROM tarefas WHERE prioridade = :prioridade";
-            $statement = $GLOBALS['pdo']->prepare($sql);
-            $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
-
-        } else if ($prioridade == "" && $estado != "") {
-
-            $sql = "SELECT * FROM tarefas WHERE estado = :estado";
-            $statement = $GLOBALS['pdo']->prepare($sql);
-            $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
-
-        } else if ($estado != "" && $prioridade != "") {
-
-            $sql = "SELECT * FROM tarefas WHERE estado = :estado AND prioridade = :prioridade";
-            $statement = $GLOBALS['pdo']->prepare($sql);
-            $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
-            $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
-
-        }
-
-        $statement->execute();
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    // Adiciona condições adicionais se necessário
+    if ($estado != "") {
+        $sql .= " AND estado = :estado";
     }
+
+    if ($prioridade != "") {
+        $sql .= " AND prioridade = :prioridade";
+    }
+
+    $statement = $GLOBALS['pdo']->prepare($sql);
+    $statement->bindParam(':utilizador_id', $utilizadorId, PDO::PARAM_INT);
+
+    // Adiciona valores aos parâmetros se necessário
+    if ($estado != "") {
+        $statement->bindParam(':estado', $estado, PDO::PARAM_STR);
+    }
+
+    if ($prioridade != "") {
+        $statement->bindParam(':prioridade', $prioridade, PDO::PARAM_INT);
+    }
+
+    $statement->execute();
+
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
     public function pesquisarTarefa($titulo)
     {
