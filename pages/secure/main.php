@@ -39,12 +39,12 @@ $tarefas = $tarefaRepository->getAllTarefas();
 
 
     <style>
-        body {
-            background-image: url('../../assets/images/fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    body {
+        background-image: url('../../assets/images/fundo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
     </style>
 </head>
 
@@ -79,6 +79,13 @@ $tarefas = $tarefaRepository->getAllTarefas();
                             <a href="info.php" class="nav-link px-0 align-middle">
                                 <i class="bi bi-calendar"></i>
                                 <span class="ms-1 d-none d-sm-inline">Calendário</span>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a href="partilhar.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-calendar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Partilhar</span>
                             </a>
                         </li>
                         <hr>
@@ -131,28 +138,28 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         </thead>
                         <tbody>
                             <?php foreach ($tarefas as $tarefa): ?>
-                                <tr>
-                                    <td>
-                                        <?= $tarefa['titulo'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['descricao'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['data_inicio'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['data_fim'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['prioridade'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['estado'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
-                                    </td>
+                            <tr>
+                                <td>
+                                    <?= $tarefa['titulo'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['descricao'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['data_inicio'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['data_fim'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['prioridade'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['estado'] ?>
+                                </td>
+                                <td>
+                                    <?= $tarefa['favorita'] ? 'Sim' : 'Não' ?>
+                                </td>
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -243,19 +250,19 @@ $tarefas = $tarefaRepository->getAllTarefas();
 </body>
 
 <script>
-    function updateClock() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
+function updateClock() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
 
-        var formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    var formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 
-        document.getElementById('current-time').innerText = formattedTime;
-    }
+    document.getElementById('current-time').innerText = formattedTime;
+}
 
-    setInterval(updateClock, 1000);
-    updateClock();
+setInterval(updateClock, 1000);
+updateClock();
 </script>
 
 
