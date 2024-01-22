@@ -68,7 +68,8 @@ function updateUser($user)
             username = :username, 
             password = :password, 
             nome = :nome, 
-            email = :email
+            email = :email,
+            foto_perfil = :foto_perfil
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
@@ -79,6 +80,7 @@ function updateUser($user)
             ':password' => $user['password'],
             ':nome' => $user['nome'],
             ':email' => $user['email'],
+            ':foto_perfil' => $user['foto_perfil'],
         ]);
     }
 
@@ -86,7 +88,8 @@ function updateUser($user)
     utilizadores SET
         username = :username, 
         nome = :nome, 
-        email = :email
+        email = :email,
+        foto_perfil = :foto_perfil
     WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
@@ -96,8 +99,10 @@ function updateUser($user)
         ':username' => $user['username'],
         ':nome' => $user['nome'],
         ':email' => $user['email'],
+        ':foto_perfil' => $user['foto_perfil'],
     ]);
 }
+
 
 function updatePassword($user)
 {

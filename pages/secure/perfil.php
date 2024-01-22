@@ -6,6 +6,15 @@ session_start();
 $user = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    var_dump($_FILES);
+
+    if (!empty($_FILES['foto_perfil']['name'])) {
+        $fotoPerfilTmpName = $_FILES['foto_perfil']['tmp_name'];
+        $fotoPerfilData = file_get_contents($fotoPerfilTmpName);
+    }else {
+        $fotoPerfilData = $userData['foto_perfil'];
+    }
+
     $userId = $_SESSION['id'];
 
     if ($userData = getById($userId)) {
@@ -18,12 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             'nome' => $novoNome,
             'email' => $novoEmail,
             'username' => $novoUsername,
+            'foto_perfil' => $fotoPerfilData,
         ]);
-
         header("Location: /tmaster/pages/secure/perfil.php");
         exit();
     }
 }
+
 
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
@@ -40,58 +50,27 @@ if (isset($_SESSION['id'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <script src="/../../assets/js/func.js"></script>
+    <link href="/../../assets/js/func.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <style>
-        .container-fluid {
-            background-image: url('../../assets/images/fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-
-        }
-    </style>
-</head>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
 
     <style>
-        body {
-            background-image: url('../../assets/images/fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    .container-fluid {
+        background-image: url('../../assets/images/fundo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+
+    }
     </style>
 </head>
 
@@ -155,7 +134,7 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
 
-            <!-- MODAL DE CONFRIMAÇÃO DE LOGOUT-->
+
             <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -183,20 +162,48 @@ if (isset($_SESSION['id'])) {
                     <div class="col-md-12 text-center">
                         <h1 class="mt-4 text-left">Perfil</h1>
                         <hr>
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
-                                <label for="perfilImageInput">
-                                    <img id="perfilImage" class="rounded-circle img-fluid" width="90px"
-                                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                </label>
-                                <input type="file" id="perfilImageInput" name="perfilImage" accept="image/*"
-                                    style="display: none;" onchange="displayImage(this)">
-                                <span class="font-weight-bold mt-1">
-                                    <?= $user['username'] ?>
-                                </span>
-                            </div>
-                        </form>
+
+                <form action="/tmaster/pages/secure/perfil.php" method="post" enctype="multipart/form-data">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
+                        <div class="form-group mb-2">
+                            <label for="foto_perfil" class="labels mt-1 mb-1">Foto de Perfil</label>
+                            <input type="file" id="foto_perfil" name="foto_perfil" class="form-control-file"
+                                onchange="previewImage(this)">
+                            <img id="preview"
+                                src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>"
+                                alt="Foto de Perfil" width="100" height="100" class="rounded-circle">
+                        </div>
+                        <span class="font-weight-bold mt-1">
+                            <?= $user['username'] ?>
+                        </span>
+                        <div class="mt-2 text-center">
+                            <button type="submit" name="submit" class="btn btn-success">
+                                Atualizar Foto de Perfil
+                            </button>
+                        </div>
                     </div>
+                </form>
+
+                <script>
+                    function previewImage(input) {
+                        var preview = document.getElementById('preview');
+                        var file = input.files[0];
+                        var reader = new FileReader();
+
+                        reader.onloadend = function() {
+                            preview.src = reader.result;
+                        }
+
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        } else {
+                            preview.src = "data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>";
+                        }
+                    }
+                </script>
+            </div>
+
+
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="p-3 py-2">
                             <form action="/tmaster/pages/secure/perfil.php" method="post">
