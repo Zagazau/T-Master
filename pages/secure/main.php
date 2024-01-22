@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/tarefaRepository.php';
@@ -111,7 +112,9 @@ $tarefas = $tarefaRepository->getAllTarefas();
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
                                 hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
+                            <span class="d-none d-sm-inline mx-1">
+                                <?= $_SESSION['user']['nome']; ?>
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -142,7 +145,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
             <div class="col-md-9 col-xl-10">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="mt-3">Bem-vindo,
-                        <?= $user['nome'] ?? null ?>!
+                        <?= $_SESSION['user']['nome']; ?>!
                     </h1>
                     <h2 id="current-time" class="h2 text-dark p-3 rounded text-center mt-3"></h2>
 

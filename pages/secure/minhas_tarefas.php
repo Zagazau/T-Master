@@ -120,7 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
                                 hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
+                            <span class="d-none d-sm-inline mx-1">
+                                <?= $_SESSION['user']['nome']; ?>
+                            </span>
                         </a>
                     </div>
                 </div>
