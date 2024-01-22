@@ -1,75 +1,63 @@
 <?php
-#EASY DATABASE SETUP
-require __DIR__ . './connection.php'; 
+require_once __DIR__ . './connection.php';
 
+# connection.php
+$host = "localhost";
+$user = "root";
+$pass = '';
 
+try {
+    $pdo = new PDO("mysql:host=$host", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error: " . $e->getMessage());
+}
 
-/*
+try {
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS tmaster");
+} catch (PDOException $e) {
+    die("Error creating database: " . $e->getMessage());
+}
 
-#DROP TABLE
-$pdo->exec('DROP TABLE IF EXISTS users;');
+$pdo->exec("USE tmaster");
 
-echo 'table users deleted!' . PHP_EOL;
+try {
 
-#CREATE TABLE
-$pdo->exec(
-'CREATE TABLE users (
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name varchar(50)	, 
-lastname varchar(50)	, 
-phoneNumber varchar(50)	, 
-email varchar(50)	 NOT NULL, 
-foto varchar(50)	 NULL, 
-administrator bit, 
-password varchar(200)	);'
-);
+    $pdo->exec('
+        CREATE TABLE IF NOT EXISTS utilizadores (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            nome VARCHAR(255),
+            email VARCHAR(255),
+            foto_perfil LONGBLOB,
+            UNIQUE KEY (username)
+        );
 
-echo 'Tabela users created!' . PHP_EOL;
-*/
-#DEFAULT USER TO ADD
-$user = [
-    'name' => 'Marcelo',
-    'lastname' => 'Antunes Fernandes',
-    'phoneNumber' => '987654321',
-    'email' => 'fernandesmarcelo@estg.ipvc.pt',
-    'foto' => null,
-    'administrator' => true,
-    'password' => '123456'
-];
+        CREATE TABLE IF NOT EXISTS tarefas (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            titulo VARCHAR(255) NOT NULL,
+            descricao TEXT,
+            data_inicio DATE,
+            data_fim DATE,
+            prioridade INT,
+            estado ENUM("Por fazer", "A ser feita", "Terminada") DEFAULT "Por fazer",
+            favorita BOOLEAN DEFAULT false,
+            utilizador_id INT,
+            anexo_caminho VARCHAR(255),
+            FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id)
+        );
 
-#HASH PWD
-$user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
-
-#INSERT USER
-$sqlCreate = "INSERT INTO 
-utilizadores (
-   name, 
-   lastname, 
-   phoneNumber, 
-   email, 
-   foto, 
-   administrator, 
-   password) 
-VALUES (
-   :name, 
-   :lastname, 
-   :phoneNumber, 
-   :email, 
-   :foto, 
-   :administrator, 
-   :password
-)";
-
-#PREPARE QUERY
-$PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
-
-#EXECUTE
-$success = $PDOStatement->execute([
-    ':name' => $user['name'],
-    ':lastname' => $user['lastname'],
-    ':phoneNumber' => $user['phoneNumber'],
-    ':email' => $user['email'],
-    ':foto' => $user['foto'],
-    ':administrator' => $user['administrator'],
-    ':password' => $user['password']
-]);
+        CREATE TABLE IF NOT EXISTS partilhaTarefa (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            remetente_id INT,
+            destinatario_id INT,
+            tarefa_id INT,
+            FOREIGN KEY (remetente_id) REFERENCES utilizadores(id),
+            FOREIGN KEY (destinatario_id) REFERENCES utilizadores(id),
+            FOREIGN KEY (tarefa_id) REFERENCES tarefas(id)
+        );
+    ');
+} catch (PDOException $e) {
+    die("Error: " . $e->getMessage());
+}

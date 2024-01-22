@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../infra/db/connection.php';
 require_once __DIR__ . '/../../infra/repositories/userRepository.php';
-session_start();
+require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 
 $user = [];
 
@@ -46,32 +46,53 @@ if (isset($_SESSION['id'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <link href="/../../assets/js/func.js"></script>
+    <link href="/../../assets/js/func.js">
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
     <style>
-    .container-fluid {
-        background-image: url('../../assets/images/fundo.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        min-height: 100vh;
+        .container-fluid {
+            background-image: url('../../assets/images/fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
 
-    }
+        }
     </style>
+
+
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>";
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -128,7 +149,7 @@ if (isset($_SESSION['id'])) {
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
                                 hugenerd" width="30" height="30" class="rounded-circle">
-                                <span class="d-none d-sm-inline mx-1">
+                            <span class="d-none d-sm-inline mx-1">
                                 <?= $_SESSION['user']['nome']; ?>
                             </span>
                         </a>
@@ -165,45 +186,28 @@ if (isset($_SESSION['id'])) {
                         <h1 class="mt-4 text-left">Perfil</h1>
                         <hr>
 
-                <form action="/tmaster/pages/secure/perfil.php" method="post" enctype="multipart/form-data">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
-                        <div class="form-group mb-2">
-                            <label for="foto_perfil" class="labels mt-1 mb-1">Foto de Perfil</label>
-                            <input type="file" id="foto_perfil" name="foto_perfil" class="form-control-file"
-                                onchange="previewImage(this)">
-                            <img id="preview"
-                                src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>"
-                                alt="Foto de Perfil" width="100" height="100" class="rounded-circle">
-                        </div>
-                        <span class="font-weight-bold mt-1">
-                            <?= $user['username'] ?>
-                        </span>
-                        <div class="mt-2 text-center">
-                            <button type="submit" name="submit" class="btn btn-success">
-                                Atualizar Foto de Perfil
-                            </button>
-                        </div>
+                        <form action="/tmaster/pages/secure/perfil.php" method="post" enctype="multipart/form-data">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
+                                <div class="form-group mb-2">
+                                    <label for="foto_perfil" class="labels mt-1 mb-1">Foto de Perfil</label>
+                                    <input type="file" id="foto_perfil" name="foto_perfil" class="form-control-file"
+                                        onchange="previewImage(this)">
+                                    <img id="preview"
+                                        src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>" alt=""
+                                        width="100" height="100" class="rounded-circle">
+                                </div>
+                                <span class="font-weight-bold mt-1">
+                                    <?= $user['username'] ?>
+                                </span>
+                                <div class="mt-2 text-center">
+                                    <button type="submit" name="submit" class="btn btn-success">
+                                        Atualizar Foto de Perfil
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
-                </form>
-
-                <script>
-                    function previewImage(input) {
-                        var preview = document.getElementById('preview');
-                        var file = input.files[0];
-                        var reader = new FileReader();
-
-                        reader.onloadend = function() {
-                            preview.src = reader.result;
-                        }
-
-                        if (file) {
-                            reader.readAsDataURL(file);
-                        } else {
-                            preview.src = "data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>";
-                        }
-                    }
-                </script>
-            </div>
 
 
                     <div class="col-md-6 mt-3 mt-md-0">
@@ -226,45 +230,12 @@ if (isset($_SESSION['id'])) {
                                 </div>
                                 <hr>
                                 <div class="mt-2 text-center">
-                                    <button type="submit" name="submit" class="btn btn-success">
+                                    <button type="submit" name="submit" class="btn btn-info">
                                         Guardar Alterações
-                                    </button>
-                                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
-                                        data-target="#alterarSenhaModal">
-                                        Editar Password
                                     </button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Editar Senha -->
-        <div class="modal fade" id="alterarSenhaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Alterar Password</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="novaPass" class="form-label">Nova Password:</label>
-                            <input type="password" id="novaPass" name="novaPass" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmarNovaPass" class="form-label">Confirmar Password:</label>
-                            <input type="password" id="confirmarNovaPass" name="confirmarNovaPass" class="form-control"
-                                required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Guardar Alterações</button>
                     </div>
                 </div>
             </div>
