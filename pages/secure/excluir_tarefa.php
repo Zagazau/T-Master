@@ -11,16 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $tarefaRepository->deleteTarefa($tarefa_id);
 
-        header('Location: /tmaster/pages/secure/main.php');
+        header('Location: /tmaster/pages/secure/minhas_tarefas.php');
         exit();
     } else {
 
-        header('Location: /tmaster/pages/secure/main.php');
+        header('Location: /tmaster/pages/secure/minhas_tarefas.php');
         exit();
     }
 } else {
 
-    header('Location: /tmaster/pages/secure/main.php');
+    header('Location: /tmaster/pages/secure/minhas_tarefas.php');
     exit();
 }
 ?>
