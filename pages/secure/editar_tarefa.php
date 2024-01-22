@@ -197,8 +197,8 @@ if (!$tarefa_existente) {
                         </div>
 
                         <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                            <a href="minhas_tarefas.php" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                            <a href="minhas_tarefas.php" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </form>
                 </div>

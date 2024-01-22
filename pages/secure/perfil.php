@@ -99,7 +99,7 @@ if (isset($_SESSION['id'])) {
     <div class="container-fluid">
         <div class="row flex-nowrap">
 
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
+            <div class="col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/"
                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -183,32 +183,30 @@ if (isset($_SESSION['id'])) {
             <div class="container-fluid">
                 <div class="row justify-content-center align-items-start">
                     <div class="col-md-12 text-center">
-                        <h1 class="mt-4 text-left">Perfil</h1>
+                        <h1 class="mt-2 text-left">Perfil</h1>
                         <hr>
-
                         <form action="/tmaster/pages/secure/perfil.php" method="post" enctype="multipart/form-data">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-1 position-relative">
                                 <div class="form-group mb-2">
-                                    <label for="foto_perfil" class="labels mt-1 mb-1">Foto de Perfil</label>
+                                    <label for="foto_perfil" class="file-label">
+                                        <img id="preview"
+                                            src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>"
+                                            alt="" width="100" height="100" class="rounded-circle">
+                                    </label>
                                     <input type="file" id="foto_perfil" name="foto_perfil" class="form-control-file"
-                                        onchange="previewImage(this)">
-                                    <img id="preview"
-                                        src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>" alt=""
-                                        width="100" height="100" class="rounded-circle">
+                                        style="display: none;" onchange="previewImage(this)">
                                 </div>
                                 <span class="font-weight-bold mt-1">
                                     <?= $user['username'] ?>
                                 </span>
                                 <div class="mt-2 text-center">
-                                    <button type="submit" name="submit" class="btn btn-success">
+                                    <button type="submit" name="submit" class="btn btn-outline-success">
                                         Atualizar Foto de Perfil
                                     </button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
-
 
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="p-3 py-2">

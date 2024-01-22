@@ -229,18 +229,41 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                                         </td>
                                         <td>
                                             <a href="/tmaster/pages/secure/editar_tarefa.php?tarefa_id=<?= $tarefa['id'] ?>"
-                                                class="btn btn-primary">Editar</a>
-                                            <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post"
-                                                onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
-                                                <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
-                                                <button type="submit" class="btn btn-danger">Excluir</button>
-                                            </form>
+                                                class="btn btn-secondary">Editar</a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#confirmacaoExclusaoModal">
+                                                Eliminar
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmacaoExclusaoModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Tarefa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem a certeza que deseja eliminar a tarefa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form action="/tmaster/pages/secure/excluir_tarefa.php" method="post">
+                        <input type="hidden" name="tarefa_id" value="<?= $tarefa['id'] ?>">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
                 </div>
             </div>
         </div>
