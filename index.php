@@ -53,7 +53,6 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
           </li>
           <li class="nav-item">
             <a class="btn btn-outline-secondary ml-2 mb-2" href="./pages/public/signin.php" style="width: 90%;">
-
               Login
             </a>
           </li>
@@ -166,26 +165,18 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
 
             <div class="col-md-6">
               <form class="mb-5">
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <label class="col-form-label">Nome</label>
-                    <input type="text" class="form-control">
-                  </div>
+                <div class="form-group">
+                  <label class="col-form-label">Nome</label>
+                  <input type="text" class="form-control">
                 </div>
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <label class="col-form-label">E-mail</label>
-                    <input type="text" class="form-control">
-                  </div>
+                <div class="form-group">
+                  <label class="col-form-label">E-mail</label>
+                  <input type="text" class="form-control">
                 </div>
-
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <label class="col-form-label">Mensagem</label>
-                    <input type="text" class="form-control" maxlength="250">
-                  </div>
+                <div class="form-group">
+                  <label class="col-form-label">Mensagem</label>
+                  <textarea class="form-control" rows="3" maxlength="250"></textarea>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
             </div>
@@ -198,16 +189,19 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
       <section class="social mt-5 mb-4 text-center">
         <div class="container">
           <div class="row justify-content-center">
-            <a href="https://www.instagram.com/" target="_blank" class="insta col-2"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.facebook.com/" target="_blank" class="facebook col-2"><i
+            <a href="https://www.instagram.com/" target="_blank" class="insta col-6 col-md-2"><i
+                class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" class="facebook col-6 col-md-2"><i
                 class="bi bi-facebook"></i></a>
-            <a href="https://www.linkedin.com/" target="_blank" class="linkedin col-2"><i
+            <a href="https://www.linkedin.com/" target="_blank" class="linkedin col-6 col-md-2"><i
                 class="bi bi-linkedin"></i></a>
-            <a href="https://twitter.com/" target="_blank" class="twitter col-2"><i class="bi bi-twitter"></i></a>
+            <a href="https://twitter.com/" target="_blank" class="twitter col-6 col-md-2"><i
+                class="bi bi-twitter"></i></a>
           </div>
         </div>
       </section>
-
+    </div>
+  </main>
 </body>
 
 </html>

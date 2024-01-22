@@ -18,7 +18,7 @@ function user()
 
 function userId()
 {
-    return  $_SESSION['id'];
+    return $_SESSION['id'];
 }
 
 function administrator()

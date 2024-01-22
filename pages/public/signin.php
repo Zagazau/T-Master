@@ -2,14 +2,6 @@
 $title = '- Sign In';
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 ?>
-<?php
-if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
-    foreach ($_SESSION['errors'] as $error) {
-        echo '<p class="alert" style="color: red;">' . $error . '</p>';
-    }
-    unset($_SESSION['errors']);
-}
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -42,16 +34,6 @@ if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
                                     <div class="form-outline mb-4">
                                         <input type="password" id="form3Example4cg" class="form-control form-control-lg"
                                             placeholder="Password" name="password" id="password" />
-                                    </div>
-
-                                    <div class="form-check mb-5 text-center">
-                                        <div>
-                                            <input class="form-check-input me-2" type="checkbox" value=""
-                                                id="form2Example3cg" />
-                                            <label class="form-check-label text-center" for="form2Example3cg">
-                                                Guardar dados
-                                            </label>
-                                        </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center">

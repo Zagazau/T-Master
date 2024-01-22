@@ -2,28 +2,18 @@
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 require_once __DIR__ . '/../../controllers/admin/user.php';
 $title = '- Sign Up';
+
+if (isset($_SESSION['errors']) && is_array($_SESSION['errors'])) {
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<p class="alert" style="color: red;">' . $error . '</p>';
+    }
+    unset($_SESSION['errors']);
+}
+
+
 ?>
 
 <main>
-    <section>
-        <?php
-        if (isset($_SESSION['success'])) {
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-            echo $_SESSION['success'] . '<br>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            unset($_SESSION['success']);
-        }
-        if (isset($_SESSION['errors'])) {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-            foreach ($_SESSION['errors'] as $error) {
-                echo $error . '<br>';
-            }
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            unset($_SESSION['errors']);
-        }
-        ?>
-    </section>
-
     <!DOCTYPE html PUBLIC>
 
     <html lang="en">
@@ -72,7 +62,7 @@ $title = '- Sign Up';
 
                                         <form method="POST" action="/tmaster/controllers/auth/signup.php">
                                             <div class="form-outline mb-4">
-                                                <input type="text" name="nome" id="name"
+                                                <input type="text" name="nome" id="nome"
                                                     class="form-control form-control-lg" placeholder="Nome" />
                                             </div>
 

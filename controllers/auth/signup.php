@@ -22,14 +22,13 @@ function signUp($req)
         $user = createNewUser($data);
 
         if ($user) {
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['nome'] = $user['nome'];
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['nome'] = $data['nome'];
 
             setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
             setcookie("nome", $data['nome'], time() + (60 * 60 * 24 * 30), "/");
-            header('location: /tmaster/');
+            header('location: /tmaster/pages/public/signin.php');
         }
     }
 }
 ?>
-
