@@ -47,9 +47,9 @@ if (!$tarefa_existente) {
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row flex-nowrap">
+
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #8f8f8f;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/"
@@ -58,6 +58,7 @@ if (!$tarefa_existente) {
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
+
                         <li class="nav-item">
                             <a href="main.php" class="nav-link align-middle px-0">
                                 <i class="bi bi-house-door"></i>
@@ -80,7 +81,14 @@ if (!$tarefa_existente) {
                         </li>
                         <hr>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a href="partilhar.php" class="nav-link px-0 align-middle">
+                                <i class="bi bi-share"></i>
+                                <span class="ms-1 d-none d-sm-inline">Partilhar</span>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a href="#confirmLogoutModal" class="nav-link px-0 align-middle" data-toggle="modal">
                                 <i class="bi-box-arrow-right"></i>
                                 <span class="ms-1 d-none d-sm-inline">Sign Out</span>
                             </a>
@@ -88,13 +96,34 @@ if (!$tarefa_existente) {
                     </ul>
                     <hr>
                     <div class="dropdown pb-4">
-                        <a href="perfil.php"
-                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
+                            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
+                                hugenerd" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Aparecer Nome</span>
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL DE CONFRIMAÇÃO DE LOGOUT-->
+            <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Terminar Sessão</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Tem a certeza de que deseja sair?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/tmaster/controllers/auth/signin.php?user=logout" class="btn btn-danger">Sim</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>

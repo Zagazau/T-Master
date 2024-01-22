@@ -25,9 +25,9 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex justify-content-between">
-      <div class=" w-100 d-flex justify-content-between align-items-center">
+      <div class="w-100 d-flex justify-content-between align-items-center">
         <a href="/" class="navbar-brand d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
           <img class="header-logo" src="assets/images/Logo1.png" alt="">
         </a>
@@ -52,7 +52,8 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
             <a href="#contact" class="nav-link px-2 link-dark" style="color: gray;">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-secondary ml-2 mb-2" href="./pages/public/signin.php" style="width: 25%;">
+            <a class="btn btn-outline-secondary ml-2 mb-2" href="./pages/public/signin.php" style="width: 90%;">
+
               Login
             </a>
           </li>

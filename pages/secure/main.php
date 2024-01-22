@@ -93,7 +93,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                         <hr>
                         <li>
                             <a href="partilhar.php" class="nav-link px-0 align-middle">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-share"></i>
                                 <span class="ms-1 d-none d-sm-inline">Partilhar</span>
                             </a>
                         </li>
@@ -192,8 +192,7 @@ $tarefas = $tarefaRepository->getAllTarefas();
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#addtarefaModal">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addtarefaModal">
                         Adicionar Tarefa
                     </button>
 

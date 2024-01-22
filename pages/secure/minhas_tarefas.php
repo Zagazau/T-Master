@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["pesquisar"]) && $_GET["
                         <hr>
                         <li>
                             <a href="partilhar.php" class="nav-link px-0 align-middle">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-share"></i>
                                 <span class="ms-1 d-none d-sm-inline">Partilhar</span>
                             </a>
                         </li>

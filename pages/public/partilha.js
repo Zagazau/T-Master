@@ -13,7 +13,6 @@ function partilharTarefa() {
 
         },
         error: function (error) {
-            // Lide com erros, se necessário
             console.error(error);
         }
     });
