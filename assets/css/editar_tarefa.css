@@ -5,3 +5,10 @@
 .nav-pills .nav-link:hover {
     color: white;
 }
+
+body {
+    background-image: url('/tmaster/assets/images/fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

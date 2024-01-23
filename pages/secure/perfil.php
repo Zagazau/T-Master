@@ -63,19 +63,6 @@ if (isset($_SESSION['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-    <style>
-        .container-fluid {
-            background-image: url('../../assets/images/fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-
-        }
-    </style>
-
-
     <script>
         function previewImage(input) {
             var preview = document.getElementById('preview');
@@ -147,8 +134,8 @@ if (isset($_SESSION['id'])) {
                     <div class="dropdown pb-4">
                         <a href="perfil.php" class="d-flex align-items-center text-white text-decoration-none"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"" alt="
-                                hugenerd" width="30" height="30" class="rounded-circle">
+                            <img id="preview" src="data:image/jpeg;base64,<?= base64_encode($user['foto_perfil']) ?>"
+                                alt="" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">
                                 <?= $_SESSION['user']['nome']; ?>
                             </span>
